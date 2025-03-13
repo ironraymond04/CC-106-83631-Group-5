@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Reminders</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f8f8f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .back-btn {
+            position: absolute;
+            left: 10px;
+            top: 0;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .date {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .container {
+            width: 350px;
+            background: #aebdc8;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .date-picker {
+            background: #dce3e7;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .date-picker label {
+            font-size: 12px;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .date-picker input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background: white;
+            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .set-time {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .time-selector {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 10px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-selector select {
+            font-size: 16px;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .buttons button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .cancel {
+            background: #b0b0b0;
+            color: white;
+            margin-right: 10px;
+        }
+
+        .save {
+            background: black;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <span class="back-btn">&larr;</span>
+        Set Reminders
+    </div>
+
+    <p class="date">March 7, 2025</p>
+
+    <div class="container">
+        <div class="date-picker">
+            <label for="reminder-date">DATE OF BIRTH</label>
+            <input type="date" id="reminder-date">
+        </div>
+
+        <div class="set-time">Set time</div>
+
+        <div class="time-selector">
+            <select>
+                <option>06</option>
+                <option>07</option>
+                <option>08</option>
+            </select>
+            :
+            <select>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+            </select>
+            :
+            <select>
+                <option>54</option>
+                <option>55</option>
+                <option>56</option>
+            </select>
+            <select>
+                <option>AM</option>
+                <option>PM</option>
+            </select>
+        </div>
+
+        <div class="buttons">
+            <button class="cancel"><a href="reminders.html">Cancel</a></button>
+            <button class="save"><a href="reminders.html">Save</a></button>
+        </div>
+    </div>
+
+</body>
+</html>

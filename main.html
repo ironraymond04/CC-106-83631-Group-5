@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowmed</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #dce3e7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 350px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+        }
+
+        .header h1 {
+            font-size: 20px;
+            color: #4a6670;
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .icons i {
+            font-size: 18px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .user-info img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        .buttons button {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 20px;
+            background-color: #5f7680;
+            color: white;
+            cursor: pointer;
+        }
+
+        .buttons button.active {
+            background-color: #3a4d54;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: #c0b6c1;
+            padding: 8px;
+            border-radius: 20px;
+            margin: 15px;
+        }
+
+        .search-bar input {
+            border: none;
+            background: transparent;
+            outline: none;
+            flex-grow: 1;
+            padding-left: 10px;
+        }
+
+        .search-bar i {
+            color: white;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+        }
+
+        .box {
+            background: white;
+            height: 100px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Knowmed</h1>
+            <div class="icons">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-bell"></i>
+            </div>
+        </div>
+
+        <div class="user-info">
+            <div>
+                <h3>Hello, Kenjay Ular</h3>
+                <p>Welcome to Knowmed</p>
+            </div>
+            <img src="profile.jpg" alt="User Profile">
+        </div>
+
+        <div class="buttons">
+            <button class="active"><a href="main.html">Home</a></button>
+            <button><a href="saved.html">Saved</a></button>
+            <button><a href="reminders.html">Set Reminders</a></button>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Hinted search text">
+        </div>
+
+        <div class="content">
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+
+</body>
+</html>
