@@ -61,7 +61,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            margin-left: 10px;
+            margin-left: 100px;
         }
 
         .buttons {
@@ -104,6 +104,14 @@
             cursor: pointer;
         }
 
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        #reminders , #history, #about{
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -132,9 +140,9 @@
         </div>
 
         <div class="content">
-            <div class="reminder-box"><a href="set-reminders.html">Set Reminders</a></div>
-            <div class="reminder-box"><a href="history.html">History</a></div>
-            <div class="reminder-box"><a href="about.html">About</a></div>
+            <div class="reminder-box"><a href="set-reminders.html" id="reminders">Set Reminders</a></div>
+            <div class="reminder-box"><a href="history.html" id="history">History</a></div>
+            <div class="reminder-box"><a href="about.html" id="about">About</a></div>
         </div>
     </div>
 

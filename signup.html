@@ -13,7 +13,7 @@
         }
 
         body {
-            background-color: #5f7680;
+            background-color: #f5f5f5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -21,7 +21,7 @@
         }
 
         .container {
-            background: #f5f5f5;
+            background: #607D8B;
             padding: 30px;
             border-radius: 10px;
             width: 300px;
@@ -69,6 +69,17 @@
         .login-link a:hover {
             text-decoration: underline;
         }
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+    h2, p {
+        color: white;
+    }
+    #sign-in {
+        color: #FFC2C2;
+    }
     </style>
 </head>
 <body>
@@ -79,9 +90,9 @@
         <input type="text" placeholder="First name">
         <input type="password" placeholder="Password">
         <input type="password" placeholder="Confirm password">
-        <input type="text" placeholder="Number">
+        <input type="text" placeholder="Phone No.">
         <button><a href="main.html">Log In</a></button>
-        <p class="login-link">Already have an account? <a href="index.html">Sign in</a></p>
+        <p class="login-link">Already have an account? <a href="index.html" id="sign-in">Sign in</a></p>
     </div>
 
 </body>
