@@ -56,11 +56,18 @@
       font-size: 14px;
     }
 
-    .sidebar a {
+    .sidebar #logout {
       color: red;
       text-align: center;
       background: none;
       text-decoration: none;
+    }
+
+    .sidebar a {
+        color: black;
+        text-align: center;
+        background: none;
+        text-decoration: none;
     }
 
     .main {
@@ -139,6 +146,11 @@
     .bell {
         margin-left: 920px;
     }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
   </style>
 </head>
 <body>
@@ -150,7 +162,7 @@
     <button><a href="pass-sec.html">Password & Security</a></button>
     <button><a href="service.html">Term of Service</a></button>
     <button><a href="help.html">Help center</a></button>
-    <a href="sign-in.html">Log out</a>
+    <a href="sign-in.html" id="logout">Log out</a>
   </div>
 
   <div class="main">
