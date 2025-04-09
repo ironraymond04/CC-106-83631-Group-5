@@ -1,172 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KnowMed Login</title>
-    <style>
-        * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KnowMed</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #F8F9FA;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  background-color: #f5f7fa;
+  color: #333;
 }
 
-.login-container {
-    background-color: #607D8B;
-    color: white;
-    padding: 2rem;
-    width: 100%;
-    max-width: 400px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+  align-items: center;
+  background-color: white;
 }
 
-.logo img {
-    width: 100px;
-    margin-bottom: 1rem;
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  color: #1e7172;
+  
+
 }
 
-h2 {
-    margin-bottom: 1.5rem;
-    color: white;
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 
-.login-form {
-    display: flex;
-    flex-direction: column;
+.nav-links a {
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
 }
 
-.input-group {
-    margin-bottom: 1rem;
-    text-align: left;
+.contact-btn {
+  background-color: #7ee5c9;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 40px;
+  background-image: url("bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-.input-group input {
-    width: 100%;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    font-size: 1rem;
+.hero-text h1 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 20px;
 }
 
-.remember-forgot {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    font-size: 0.9rem;
+.contact-info {
+  margin-bottom: 20px;
 }
 
-.forgot-link {
-    color: #fff;
-    text-decoration: none;
+.contact-info span {
+  display: inline-block;
+  margin-right: 15px;
+  font-size: 14px;
+  color: #666;
 }
 
-.login-btn {
-    background-color: black;
-    color: white;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1rem;
+.buttons button {
+  padding: 10px 20px;
+  margin-right: 15px;
+  border: 1px solid #999;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.social-login {
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    color: white;
+.sign-in {
+  background-color: #6e8e9e;
+  color: white;
 }
 
 .sign-up {
-    margin-top: 1rem;
-    color: white;
-    font-size: 0.9rem;
+  background-color: white;
+  color: #607D8B;
 }
 
-.sign-up a {
-    color: white;
-    text-decoration: underline;
+.hero-image img {
+  max-width: 250px;
 }
 
-#log-in {
-    color: white;
-    text-decoration: none;
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #dde4eb;
 }
-.logo img {
-        border-radius: 50%;
-        margin-top: -10px;
-      }
 
-      .fa-brands {
-        font-size: 30px;
-      }
-      .fa-facebook {
-        color:rgb(0, 89, 255)
-      }
-      .fa-google {
-        color: green;
-      }
-      a {
-        text-decoration: none;
-      }
-      #sign-up {
-        color: #FFC2C2;
-        text-decoration: none;
-    }
-    </style>
+.social-icons span {
+  font-size: 24px;
+  margin: 0 10px;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+  </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">
-            <img src="logo.png" alt="KnowMed Logo">
-        </div>
-        <h2>Log In</h2>
-        <form class="login-form">
-            <div class="input-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" required>
-            </div>
-            <div class="remember-forgot">
-                <label><input type="checkbox"> Remember me</label>
-                <a href="#" class="forgot-link">Forget password</a>
-            </div>
-            <button type="submit" class="login-btn"><a href="main.html" id="log-in">Log In</a></button>
-            <div class="social-login">
-                <p>Or Sign in with</p>
-            <a href="https://www.facebook.com/login/" target="_blank" rel="noopener" class="fa-brands fa-facebook"></a>
-            <a href="https://www.google.com/login/" target="_blank" rel="noopener" class="fa-brands fa-google"></a>
-            </div>
-            <div class="sign-up">
-                <p>Don't have an account? <a href="signup.html" id="sign-up">Sign up</a></p>
-            </div>
-        </form>
+  <header class="navbar">
+    <div class="logo">
+      <img src="knowmed.png" width="50px" height="50px">
+      KnowMed</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="learning.html">Learning</a>
+      <button class="contact-btn"><a href="contact.html">Contact →</a></button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Precision in Knowledge,<br>Simplicity in Medication</h1>
+      <div class="contact-info">
+        <span>📞 +63 930 561 2995</span>
+        <span>✉️ contact@gmail.com</span>
+      </div>
     </div>
+    <div class="hero-image">
+      <img src="doctor-cartoon.png" alt="Doctor Cartoon" />
+    </div>
+  </section>
+
+  <footer>
+    <div class="buttons">
+      <button class="sign-in"><a href="sign-in.html">Sign in</a></button>
+      <button class="sign-up"><a href="sign-up.html">Sign up</a></button>
+    </div>
+  </footer>
 </body>
 </html>

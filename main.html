@@ -1,165 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Knowmed</title>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <title>KnowMed</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #c1ced6, #96a6b0);
+    }
 
-        body {
-            background-color: #dce3e7;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200px;
+      height: 100%;
+      background-color: #e5e9ec;
+      padding: 20px;
+      border-top-right-radius: 15px;
+      border-bottom-right-radius: 15px;
+    }
 
-        .container {
-            width: 350px;
-            background: white;
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    .profile-pic {
+      width: 80px;
+      height: 80px;
+      background-color: #778899;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
 
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px;
-        }
+    .username {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
 
-        .header h1 {
-            font-size: 20px;
-            color: #4a6670;
-        }
+    .age {
+      text-align: center;
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 20px;
+    }
 
-        .icons {
-            display: flex;
-            align-items: center;
-        }
+    .sidebar button, .sidebar a {
+      display: block;
+      margin: 10px auto;
+      width: 100%;
+      padding: 8px;
+      border: none;
+      background-color: #f0f0f0;
+      text-align: left;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
 
-        .icons i {
-            font-size: 18px;
-            margin-left: 10px;
-            cursor: pointer;
-        }
+    .sidebar a {
+      color: red;
+      text-align: center;
+      background: none;
+      text-decoration: none;
+    }
 
-        .user-info {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-        }
+    .main {
+      margin-left: 220px;
+      padding: 20px;
+    }
 
-        .user-info img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-left: 100px;
-        }
+    .header {
+      display: flex;
+      align-items: center;
+    }
 
-        .buttons {
-            display: flex;
-            justify-content: space-around;
-            padding: 10px;
-        }
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #2c3e50;
+    }
 
-        .buttons button {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 20px;
-            background-color: #5f7680;
-            color: white;
-            cursor: pointer;
-        }
+    .search-bar {
+      margin-top: 10px;
+      background-color: #efe6f7;
+      padding: 10px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        .buttons button.active {
-            background-color: #c0c6ca;
-        }
+    .search-bar input {
+      border: none;
+      background: transparent;
+      width: 100%;
+      font-size: 16px;
+      outline: none;
+    }
 
-        .search-bar {
-            display: flex;
-            align-items: center;
-            background: #c0b6c1;
-            padding: 8px;
-            border-radius: 20px;
-            margin: 15px;
-        }
+    .search-bar button {
+      background-color: #d3c3f3;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
 
-        .search-bar input {
-            border: none;
-            background: transparent;
-            outline: none;
-            flex-grow: 1;
-            padding-left: 10px;
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 30px;
+    }
 
-        .search-bar i {
-            color: white;
-        }
+    .card {
+      background-color: white;
+      text-align: center;
+      padding: 30px;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      height: 170%;
+    }
 
-        .content {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            padding: 10px;
-        }
+    .button-section button {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 15px;
+      font-size: 16px;
+      border: none;
+      border-radius: 10px;
+      background-color: #b0c4d8;
+      cursor: pointer;
+    }
 
-        .box {
-            background: white;
-            height: 100px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        a {
-            color: white;
-            text-decoration: none;
-        }
-
-    </style>
+    .bell {
+        margin-left: 920px;
+    }
+  </style>
 </head>
 <body>
+  <div class="sidebar">
+    <div class="profile-pic"></div>
+    <div class="username">Kenjay Ular</div>
+    <div class="age">19</div>
+    <button>Personal details</button>
+    <button>Password & Security</button>
+    <button>Term of Service</button>
+    <button>Help center</button>
+    <a href="#">Log out</a>
+  </div>
 
-    <div class="container">
-        <div class="header">
-            <h1>Knowmed</h1>
-            <div class="icons">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-bell"></i>
-            </div>
-        </div>
-
-        <div class="user-info">
-            <div>
-                <h3>Hello, Kenjay Ular</h3>
-                <p>Welcome to Knowmed</p>
-            </div>
-            <img src="profile.jpg" alt="User Profile">
-        </div>
-
-        <div class="buttons">
-            <button class="active"><a href="main.html">Home</a></button>
-            <button><a href="saved.html">Saved</a></button>
-            <button><a href="reminders.html">Set Reminders</a></button>
-        </div>
-
-        <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search...">
-        </div>
-
-        <div class="content">
-            <div class="box"></div>
-            <div class="box"></div>
-        </div>
+  <div class="main">
+    <div class="header">
+      <img src="knowmed.png" alt="KnowMed logo" width="50px" height="50px" />
+      <div class="logo">KnowMed</div>
+      <div class="bell"><img src="https://img.icons8.com/ios-filled/24/bell.png"/></div>
     </div>
 
+    <div class="search-bar">
+      <input type="text" placeholder="Search...">
+      <button>+</button>
+    </div>
+
+    <div class="grid">
+      <div class="card">Home</div>
+      <div class="card">Saved</div>
+      <div class="card">
+      <div class="button-section">
+        <button>See Reminders</button>
+        <button>History</button>
+        <button>About</button>
+      </div>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
