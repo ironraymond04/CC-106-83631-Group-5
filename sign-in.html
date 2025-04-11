@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign Up - Knowmed</title>
+  <style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f8fb;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.5rem;
+  color: #3a7073;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+}
+
+.contact-btn {
+  background: #a6f0d3;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.main-container {
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  background-image: url("bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.back-arrow {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 300px;
+  margin: 3rem auto;
+}
+
+.form-container input {
+  padding: 0.75rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.login-btn {
+  padding: 0.75rem;
+  border-radius: 10px;
+  background-color: #8fa7b6;
+  color: white;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.bottom-buttons button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  border: 1px solid #999;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+button.sign-up {
+  background-color: #4e6573;
+  color: #fff;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: #dde4eb;
+}
+button.sign-in {
+    background-color: white;
+    color: #607D8B;
+}
+
+a {
+    text-decoration: none;
+    color: black
+}
+
+.hero {
+    background-image: url("bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+label {
+    text-align: left;
+}
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="knowmed.png" alt="KnowMed logo" width="50px" height="50px"/>
+      <span>KnowMed</span>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="learning.html">Learning</a>
+      <button class="contact-btn"><a href="contact.html">Contact →</a></button>
+    </nav>
+  </header>
+
+  <section class="hero">
+  <main class="main-container">
+    <button class="back-arrow"><a href="index.html">←</a></button>
+
+    <form class="form-container">
+      <label>Email/Name: </label>
+      <input type="text" placeholder="Email/Name:" />
+      <label>Password: </label>
+      <input type="password" placeholder="Password:" />
+      <button type="submit" class="login-btn"><a href="main.html">Log in</a></button>
+    </form>
+
+    <div class="social-icons">
+      <img src="facebook-icon.png" alt="Facebook" />
+      <img src="instagram-icon.png" alt="Instagram" />
+    </div>
+</section>
+
+    <footer>
+    <div class="bottom-buttons">
+      <button class="sign-in"><a href="sign-in.html">Sign in</a></button>
+      <button class="sign-up"><a href="sign-up.html">Sign up</a></button>
+    </div>
+    </footer>
+  </main>
+</body>
+</html>

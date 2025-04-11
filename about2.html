@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KnowMed</title>
+  <style>
+    body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #c1ced6, #96a6b0);
+    }
+
+    /* Sidebar */
+    .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #e5e9ec;
+    padding: 20px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    }
+
+    .profile-pic {
+      width: 80px;
+      height: 80px;
+      background-color: #778899;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    .username {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .age {
+      text-align: center;
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .sidebar button, .sidebar a {
+      display: block;
+      margin: 10px auto;
+      width: 100%;
+      padding: 8px;
+      border: none;
+      background-color: #f0f0f0;
+      text-align: left;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .sidebar #logout {
+      color: red;
+      text-align: center;
+      background: none;
+      text-decoration: none;
+    }
+
+    .sidebar a {
+        color: black;
+        text-align: center;
+        background: none;
+        text-decoration: none;
+    }
+
+    /* Main content */
+    .main {
+        margin-left: 220px;
+        padding: 20px;
+    }
+
+    .back-arrow {
+      font-size: 20px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+
+    .content {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      height: 90%;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #444;
+    }
+
+    .logo-title {
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .box {
+      background: #6f8b9b;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .box .text-box {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      color: black;
+      flex: 1;
+    }
+
+    .logo {
+      background-image: url("knowmed.png");
+    }
+
+    .doctor-img {
+      position: absolute;
+      right: 20px;
+      bottom: 10px;
+      height: 150px;
+    }
+
+    .notification {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="profile-pic"></div>
+    <div class="username">Kenjay Ular</div>
+    <div class="age">19</div>
+    <button><a href="per-details.html">Personal details</a></button>
+    <button><a href="pass-sec.html">Password & Security</a></button>
+    <button><a href="service.html">Term of Service</a></button>
+    <button><a href="help.html">Help center</a></button>
+    <a href="sign-in.html" id="logout">Log out</a>
+  </div>
+
+  <div class="main">
+    <div class="back-arrow">&#8592;</div>
+    <div class="content">
+      <div class="notification">&#128276;</div>
+      <div class="section-title">About</div>
+      <div class="logo-title">KnowMed</div>
+
+      <div class="box">
+        <div class="logo"></div>
+        <div class="text-box">
+          ashhfsjjakbckxjasachasncqsjkbsxakndasclnlkashdamscn
+          asjldamscn .akjebafs.mchjasdadsalfrujtqbasjgbajksbfkas
+          asknancskajhdfjkbskaltnafhjssjeljubansbd,nsdakf.nfnfasln
+          laskhfkjasbkjdhalknsflakwhfbajkssjbfjkafkfasj
+        </div>
+      </div>
+
+      <div class="box">
+        <div class="logo"></div>
+        <div class="text-box">
+          ashhfsjjakbckxjasachasncqsjkbsxakndasclnlkashdamscn
+          asjldamscn .akjebafs.mchjasdadsalfrujtqbasjgbajksbfkas
+          asknancskajhdfjkbskaltnafhjssjeljubansbd,nsdakf.nfnfasln
+        </div>
+      </div>
+
+      <img src="doctor-cartoon.png" alt="Doctor" class="doctor-img">
+    </div>
+  </div>
+</body>
+</html>
