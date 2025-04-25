@@ -120,6 +120,7 @@ a {
   color: black;
 }
   </style>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header class="navbar">
@@ -153,5 +154,13 @@ a {
       <button class="sign-up"><a href="sign-up.html">Sign up</a></button>
     </div>
   </footer>
+
+  <script>
+    const supabaseUrl = "https://brxituhthyyvtjkbonxm.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyeGl0dWh0aHl5dnRqa2JvbnhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTk5NjQsImV4cCI6MjA2MTEzNTk2NH0.5DItQGaYbPU5MUa7TqKKLfW5-05HVnRUYeLpoFaVAl4";
+
+    const { createClient } = supabase;
+    const supabaseClient = createClient(supabaseUrl, supabaseKey);
+  </script>
 </body>
 </html>

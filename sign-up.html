@@ -153,6 +153,7 @@ label {
     text-align: left;
 }
   </style>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header class="navbar">
@@ -174,13 +175,13 @@ label {
 
     <form class="form-container">
       <label>Name: </label>
-      <input type="text" placeholder="Name:" />
+      <input type="text" placeholder="Name:" id="name"/>
       <label>Email: </label>
-      <input type="email" placeholder="Email:" />
+      <input type="email" placeholder="Email:" id="email"/>
       <label>Password: </label>
-      <input type="password" placeholder="Password:" />
+      <input type="password" placeholder="Password:" id="password"/>
       <label>Confirm Password:</label>
-      <input type="password" placeholder="Confirm password:" />
+      <input type="password" placeholder="Confirm password:" id="confirm-password"/>
       <button type="submit" class="login-btn"><a href="main.html">Log in</a></button>
     </form>
 
@@ -197,5 +198,31 @@ label {
     </div>
     </footer>
   </main>
+
+  <script>
+    const supabaseUrl = "https://brxituhthyyvtjkbonxm.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyeGl0dWh0aHl5dnRqa2JvbnhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTk5NjQsImV4cCI6MjA2MTEzNTk2NH0.5DItQGaYbPU5MUa7TqKKLfW5-05HVnRUYeLpoFaVAl4";
+
+    const { createClient } = supabase;
+    const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+    //2. Insert registered users in a database
+    async function insertUsers() {
+      try {
+        const { data, error } = await supabaseClient
+          .from("users")
+          .insert([
+            {
+              name: document.getElementById("name").value,
+              email: document.getElementById("email").value,
+              password: document.getElementById("password").value,
+            },
+          ]);
+      }
+      catch (error) {
+        console.error("Error inserting user:", error);
+      }
+    }
+  </script>
 </body>
 </html>
