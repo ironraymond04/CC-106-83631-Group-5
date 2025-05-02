@@ -152,12 +152,15 @@
         color: black;
     }
   </style>
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <div class="sidebar">
     <div class="profile-pic"></div>
-    <div class="username">Kenjay Ular</div>
-    <div class="age">19</div>
+    <div class="username">
+      <p id="username"></p>
+    </div>
+    <div class="age" id="age">19</div>
     <button><a href="per-details.html">Personal details</a></button>
     <button><a href="pass-sec.html">Password & Security</a></button>
     <button><a href="service.html">Term of Service</a></button>
@@ -189,5 +192,36 @@
       </div>
     </div>
   </div>
+  <script>
+  const supabaseUrl = "https://brxituhthyyvtjkbonxm.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyeGl0dWh0aHl5dnRqa2JvbnhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTk5NjQsImV4cCI6MjA2MTEzNTk2NH0.5DItQGaYbPU5MUa7TqKKLfW5-05HVnRUYeLpoFaVAl4";
+
+  const { createClient } = supabase;
+  const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+async function getUserInfo() {
+  const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+
+  if (sessionError || !session) {
+    console.error("No session or error retrieving session:", sessionError);
+    window.location.href = "sign-in.html";
+    return;
+  }
+
+  const userId = session.user.id;
+
+  const { data, error } = await supabaseClient
+    .from('users')
+    .select('name, id')
+    .eq('id', userId)
+    .single();
+
+  if (error) {
+    console.error("Error retrieving user data:", error);
+  } else {
+    document.getElementById('username').textContent = data.name || "User";
+  }
+}
+  </script>
 </body>
 </html>
