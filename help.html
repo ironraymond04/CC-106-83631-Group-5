@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KnowMed</title>
+  <title>KnowMed - Help Center</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body {
-      background: #f5f5f5;
       margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
     }
 
     .sidebar {
-      background: linear-gradient(to bottom, #d3d3d3, #9eb4bc);
-      min-height: 100vh;
-      padding: 20px;
+      background: linear-gradient(to bottom, #dadada, #a8bbc3);
+      height: 100vh;
+      padding: 30px 20px;
+      color: #000;
+      border-top-right-radius: 20px;
     }
 
     .profile-pic {
@@ -25,70 +28,64 @@
       margin: 0 auto 10px;
     }
 
-    .btn-sidebar {
-      background-color: #fff;
-      border: none;
+    .sidebar .btn {
+      margin-bottom: 15px;
       border-radius: 8px;
-      margin-bottom: 10px;
       text-align: left;
-      padding: 10px;
     }
 
-    .btn-sidebar.active {
-      background-color: #aee8da;
+    .sidebar .btn.active {
+      background-color: #b5f2dd;
+      color: black;
     }
 
     .logout {
       color: red;
-      text-align: center;
-      margin-top: auto;
+      margin-top: 150px;
       display: block;
+      text-align: center;
       font-weight: bold;
-      text-decoration: underline;
     }
 
-    .main-content {
-      background: linear-gradient(to bottom right, #b0c4cd, #7f9ba8);
-      padding: 30px;
+    .main-panel {
+      background: linear-gradient(to bottom right, #90a6b1, #7f9ba8);
       min-height: 100vh;
+      padding: 30px;
     }
 
-    .topbar {
+    .top-bar {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .logo-text {
-      font-size: 28px;
+    .top-bar h2 {
       font-weight: bold;
-      text-align: center;
     }
 
     .task-card {
-       background-color: #fff;
-       border-radius: 10px;
-       padding: 15px;
-       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-       margin-top: 50px;
-     }
- .task-card {
-      background-color: #fefefe;
+      background-color: white;
       border-radius: 10px;
-      padding: 30px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      margin-top: 30px; 
+      height: 60px;
+      margin-bottom: 20px;
     }
 
-    @media (max-width: 768px) {
-      .sidebar {
-        min-height: auto;
-        padding-bottom: 20px;
-      }
+    .icon-btn {
+      background: transparent;
+      border: none;
     }
     a {
       text-decoration: none;
       color: inherit;
+    }
+
+    .content-box {
+      background-color: white;
+      border-radius: 10px;
+      padding: 30px;
+      min-height: 300px;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #999;
     }
   </style>
 </head>
@@ -96,39 +93,36 @@
 
 <div class="container-fluid">
   <div class="row">
-    
-    <div class="col-md-3 sidebar d-flex flex-column align-items-center text-center text-dark">
-      <div class="profile-pic">
-        <img src="kenjay.png" style="width: 100px; height: 100px; border-radius: 50%;" />
+    <div class="col-md-3 sidebar">
+      <div class="text-center">
+        <div class="profile-pic mb-2">
+          <img src="kenjay.png" style="width: 100px; height: 100px; border-radius: 50%;" />
+        </div>
+        <p class="m-0">Kenjay Ular</p>
+        <p>19</p>
       </div>
-      <p class="mb-1 fw-semibold">Kenjay Ular</p>
-      <p class="mb-3">19</p>
-
       <a href="per-details.html" class="btn btn-light mb-3 w-100">Personal details</a>
       <a href="pass-sec.html" class="btn btn-light mb-3 w-100">Password & Security</a>
-      <a href="service.html" class="btn btn-light mb-3 w-100">Term of Service</a>
+      <a href="service.html" class="btn btn-light mb-3 w-100">Terms of Service</a>
       <a href="help.html" class="btn btn active mb-3 w-100">Help center</a>
 
-      <a href="sign-in.html" class="logout mt-4">Log out</a>
+      <a href="sign-in.html" class="logout">Log out</a>
     </div>
 
-    <div class="col-md-9 main-content">
-      <div class="topbar mb-4">
-        <span style="font-size: 24px;"><a href="main.html">&#8592;</a></span>
-        <div class="logo-text">
-          <img src="mainlogo.png" alt="Logo" height="40" class="me-2">
-          KnowMed
-        </div>
-        <img src="image.png" alt="Notification" width="30" height="30">
+    <div class="col-md-9 main-panel">
+      <div class="top-bar mb-5">
+        <button class="icon-btn"><span style="font-size: 24px;"><a href="main.html">←</a></span></button>
+        <h2><img src="mainlogo.png" style="height: 40px;" alt=""> KnowMed</h2>
+        <a href="notif.html"><img src="image.png" width="30" height="30" alt="Notification"></a>
       </div>
 
-      <div class="task-card"></div>
-      <div class="task-card"></div>
-      <div class="task-card"></div>
+      <div class="content-box">
+       
+      </div>
+
     </div>
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
