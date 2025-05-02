@@ -122,9 +122,13 @@
   cursor: pointer;
 }
 
-button.sign-up {
-  background-color: #4e6573;
-  color: #fff;
+.sign-up-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
 }
 
 footer {
@@ -133,9 +137,13 @@ footer {
   padding: 20px;
   background-color: #dde4eb;
 }
-button.sign-in {
-    background-color: white;
-    color: #607D8B;
+  .sign-in-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
 }
 
 a {
@@ -186,15 +194,15 @@ label {
     </form>
 
     <div class="social-icons">
-      <img src="facebook-icon.png" alt="Facebook" />
-      <img src="instagram-icon.png" alt="Instagram" />
+      <img src="facebook-icon.png" style="width: 50px; height: 50px;" alt="Facebook" />
+      <img src="instagram-icon.png" style="width: 50px; height: 50px;" alt="Instagram" />
     </div>
 </section>
 
     <footer>
     <div class="bottom-buttons">
-      <button class="sign-in"><a href="sign-in.html">Sign in</a></button>
-      <button class="sign-up"><a href="sign-up.html">Sign up</a></button>
+      <a href="sign-in.html" class="sign-in-button">Sign in</a>
+      <a href="sign-up.html" class="sign-up-button">Sign up</a>
     </div>
     </footer>
   </main>
