@@ -199,11 +199,30 @@
     </div>
   </div>
   <script>
-    const supabaseUrl = "https://brxituhthyyvtjkbonxm.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyeGl0dWh0aHl5dnRqa2JvbnhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTk5NjQsImV4cCI6MjA2MTEzNTk2NH0.5DItQGaYbPU5MUa7TqKKLfW5-05HVnRUYeLpoFaVAl4";
+  const supabaseUrl = "https://brxituhthyyvtjkbonxm.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyeGl0dWh0aHl5dnRqa2JvbnhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTk5NjQsImV4cCI6MjA2MTEzNTk2NH0.5DItQGaYbPU5MUa7TqKKLfW5-05HVnRUYeLpoFaVAl4";
 
-    const { createClient } = supabase;
-    const supabaseaClient = createClient(supabaseUrl, supabaseKey);
+  const { createClient } = supabase;
+  const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+    console.log("Supabase Client created", supabaseClient);
+
+    async function fetchUserData() {
+      const { data, error } = await supabaseClient
+        .from('users')
+        .select('*')
+        .eq('id', 1); 
+
+      if (error) {
+        console.error("Error fetching user data:", error);
+      } else {
+        const user = data[0];
+        document.getElementById('username').innerText = "Hello, " + user.name;
+        document.getElementById('age').innerText = user.age;
+      }
+    }
+    fetchUserData();
+    const logoutButton = document.getElementById('logout');
   </script>
 </body>
 </html>
