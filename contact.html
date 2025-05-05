@@ -3,10 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KnowMed - Contact</title>
-    <link rel="icon" type="image/x-icon" href="knowmed.ico">
+    <link rel="stylesheet" href="styles.css">
+    <title>KnowMed Contact</title>
 </head>
 <body>
-    
+    <div class="header">
+        <div class="logo">
+            <img src="logo.png" alt="KnowMed Logo" />
+        </div>
+        <div class="nav">
+            <a href="index.html">Home</a>
+            <a href="about2.html">About</a>
+            <a href="contact.html" class="active">Contact</a>
+        </div>
+    </div>
+    <div class="contact-container">
+        <div class="contact-card">
+            <div class="icon">
+                <img src="phone.png" alt="Phone Icon"/>
+            </div>
+            <h3>Talk through phone</h3>
+            <p>"Having question or trouble with our website, you can reach out to us"</p>
+            <p>+63 951 834 9615</p>
+        </div>
+        <div class="contact-card">
+            <div class="icon">
+                <img src="gmail.png" alt="Gmail Icon"/>
+            </div>
+            <h3>Contact through Gmail</h3>
+            <p>"Having question or trouble with our website, you can reach out to us"</p>
+            <p>Email: Knowme@gmail.com</p>
+        </div>
+    </div>
 </body>
 </html>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-image: url('bg home.png'); /* ← Replace with your image name */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensures the background covers the screen */
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #f1f1f1;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+}
+
+.nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.nav a.active {
+    font-weight: bold;
+    background-color: #3ef4a5; 
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+
+.contact-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 50px 0;
+}
+
+.contact-card {
+    background-color: #fff;
+    padding: 20px;
+    width: 250px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.contact-card .icon img {
+    width: 50px;
+}
+
+.contact-card h3 {
+    margin-top: 20px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.contact-card p {
+    margin-top: 10px;
+    color: #666;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.footer img {
+    width: 100px;
+}
+
+</style>

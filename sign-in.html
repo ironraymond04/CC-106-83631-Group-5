@@ -65,16 +65,6 @@
   background-size: cover;
 }
 
-.back-arrow {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
 .form-container {
   display: flex;
   flex-direction: column;
@@ -123,31 +113,16 @@
   cursor: pointer;
 }
 
-button.sign-up {
-  background-color: #4e6573;
-  color: #fff;
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  background-color: #dde4eb;
-}
-button.sign-in {
-    background-color: white;
-    color: #607D8B;
-}
-
 a {
     text-decoration: none;
     color: black
 }
 
 .hero {
-    background-image: url("bg.png");
+    background-image: url("doctor1.png");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 30%;
+
 }
 
 label {
@@ -165,14 +140,12 @@ label {
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="learning.html">Learning</a>
       <button class="contact-btn"><a href="contact.html">Contact →</a></button>
     </nav>
   </header>
 
   <section class="hero">
   <main class="main-container">
-    <button class="back-arrow"><a href="index.html">←</a></button>
 
     <form class="form-container">
       <label>Email/Name: </label>
@@ -182,18 +155,8 @@ label {
       <button type="submit" class="login-btn">Log in</button>
     </form>
 
-    <div class="social-icons">
-      <img src="facebook-icon.png" style="width: 50px; height: 50px;" alt="Facebook" />
-      <img src="instagram-icon.png" style="width: 50px; height: 50px;" alt="Instagram" />
-    </div>
 </section>
 
-    <footer>
-    <div class="bottom-buttons">
-      <button class="sign-in"><a href="sign-in.html">Sign in</a></button>
-      <button class="sign-up"><a href="sign-up.html">Sign up</a></button>
-    </div>
-    </footer>
   </main>
 
   <script>

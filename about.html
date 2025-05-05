@@ -1,12 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="knowmed.ico">
-    <title>KnowMed - About</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KnowMed Dashboard (About)</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-image: url('https://img.freepik.com/free-vector/abstract-medical-wallpaper-template-design_53876-61811.jpg?semt=ais_hybrid&w=740');
+      background-size: cover;
+      background-position: center;
+    }
+    .dashboard-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background-color: #008BCE;
+    }
+    .header-text {
+      color: #ffffff;
+    }
+    .back-button {
+      color: #4b5563;
+      cursor: pointer;
+      margin-right: 1rem;
+    }
+    .search-bar {
+      background-color: white;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      width: 100%;
+      max-width: 4xl;
+      padding: 1rem;
+      margin-left: 6rem;
+      display: flex;
+      align-items: center;
+    }
+    .search-input {
+      border: none;
+      outline: none;
+      width: 90%;
+    }
+    .about-content {
+      background-color: white;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .left-box {
+      position: fixed;
+      top: 4rem;
+      left: 0;
+      width: 5rem;
+      height: calc(100vh - 4rem);
+      background-color: #DCE0E6;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+      padding-top: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-container {
+      margin-left: 6rem;
+      padding: 2rem;
+    }
+    .footer-text {
+      color: #4b5563;
+      font-size: 0.875rem;
+      position: relative;
+      width: 100%;
+      text-align: center;
+      margin-top: auto;
+      padding: 1rem 0;
+    }
+  </style>
 </head>
-<body>
-    
+<body class="bg-gray-100">
+  <div class="dashboard-container">
+    <header class="header py-4 px-6">
+      <div class="flex items-center justify-center">
+        <a href="main.html" class="back-button absolute left-6">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd" d="M15.707 4.293a1 1 0 010 1.414L10.414 10l5.293 4.293a1 1 0 01-1.414 1.414l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 0z" clip-rule="evenodd" />
+          </svg>
+        </a>
+        <h1 class="header-text text-xl font-semibold text-center">KnowMed Dashboard (About)</h1>
+      </div>
+    </header>
+
+    <main class="about-container">
+      <div class="about-content">
+        <h2 class="text-lg font-semibold text-gray-800 mb-2">About the KnowMed System</h2>
+        <p class="text-sm text-gray-600">
+          The Personal Medicine Inventory System is designed to assist patients in managing their medication schedules effectively, ensuring they never miss a dose. Unlike traditional inventory systems that focus on stock management, our solution emphasizes timely dose reminders and easy access to comprehensive medicine information.
+        </p>
+        <p class="text-sm text-gray-600 mt-4">
+          With the increasing complexity of medication schedules, especially for chronic illnesses or multiple prescriptions, many patients struggle to maintain adherence. This can lead to missed doses, reduced medication effectiveness, and even health complications. Our system addresses this challenge by providing accurate and customizable alarms to remind patients to take their medication as prescribed.
+        </p>
+      </div>
+    </main>
+
+    <div class="left-box">
+      <div class="arrow-toggle" id="toggleArrow">→</div>
+    </div>
+  </div>
+
+  <footer class="footer-text">
+    <p>In-Depth Knowledge, Medication Made Simple</p>
+  </footer>
 </body>
 </html>
