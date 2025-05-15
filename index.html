@@ -2,167 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/x-icon" href="knowmed.ico">
-  <title>KnowMed</title>
-  <style>
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", sans-serif;
-}
-
-body {
-  background-color: #f5f7fa;
-  color: #333;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px 40px;
-  align-items: center;
-  background-color: white;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #1e7172;
-  
-
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: black;
-  font-size: 16px;
-}
-
-.contact-btn {
-  background-color: #7ee5c9;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 60px 40px;
-  background-image: url("bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.hero-text h1 {
-  font-size: 36px;
-  font-weight: 600;
-  color: #444;
-  margin-bottom: 20px;
-}
-
-.contact-info {
-  margin-bottom: 20px;
-}
-
-.contact-info span {
-  display: inline-block;
-  margin-right: 15px;
-  font-size: 14px;
-  color: #666;
-}
-
-.buttons button {
-  padding: 10px 20px;
-  margin-right: 15px;
-  border: 1px solid #999;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.sign-in {
-  background-color: #6e8e9e;
-  color: white;
-}
-
-.sign-up {
-  background-color: white;
-  color: #607D8B;
-}
-
-.hero-image img {
-  max-width: 250px;
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  background-color: #dde4eb;
-}
-
-.social-icons span {
-  font-size: 24px;
-  margin: 0 10px;
-}
-a {
-  text-decoration: none;
-  color: black;
-}
-  </style>
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KnowMed - Front Page</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header class="navbar">
     <div class="logo">
-      <img src="knowmed.png" width="50px" height="50px">
-      KnowMed</div>
+      <img src="logo.png" alt="KnowMed Logo" />
+      <span>KnowMed</span>
+    </div>
     <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about2.html">About</a>
-      <a href="learning.html">Learning</a>
-      <button class="contact-btn"><a href="contact.html">Contact →</a></button>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="contact-btn">Contact →</a>
     </nav>
   </header>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>Precision in Knowledge,<br>Simplicity in Medication</h1>
+  <section class="hero-section">
+    <div class="hero-content">
+      <h2>“In-depth Knowledge, Medication Made Simple”</h2>
       <div class="contact-info">
-        <span>📞 +63 930 561 2995</span>
-        <span>✉️ contact@gmail.com</span>
+        <a href="https://facebook.com" target="_blank">
+          <img src="fblogo.png" alt="Facebook" class="icon" />
+        </a>
+        <a href="https://instagram.com" target="_blank">
+          <img src="insta.png" alt="Instagram" class="icon" />
+        </a>
+        <span>+63 930 561 2995</span>
+        <span>contact@gmail.com</span>
       </div>
-    </div>
-    <div class="hero-image">
-      <img src="doctor-cartoon.png" alt="Doctor Cartoon" />
+      <div class="hero-buttons">
+        <a href="log-in.html" class="btn sign-in">Sign in</a>
+        <a href="sign-up.html" class="btn sign-up">Sign up</a>
+      </div>
     </div>
   </section>
 
-  <footer>
-    <div class="buttons">
-      <button class="sign-in"><a href="sign-in.html">Sign in</a></button>
-      <button class="sign-up"><a href="sign-up.html">Sign up</a></button>
-    </div>
-  </footer>
-
-  <script>
-    const supabaseUrl = "https://brxituhthyyvtjkbonxm.supabase.co";
-    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyeGl0dWh0aHl5dnRqa2JvbnhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTk5NjQsImV4cCI6MjA2MTEzNTk2NH0.5DItQGaYbPU5MUa7TqKKLfW5-05HVnRUYeLpoFaVAl4";
-
-    const { createClient } = supabase;
-    const supabaseClient = createClient(supabaseUrl, supabaseKey);
-    console.log(supabaseClient);
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>

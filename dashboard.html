@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KnowMed Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(to right, #f5f9fc, #dbeef3);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    header.navbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 2rem;
+      color: black;
+      position: relative;
+    }
+
+    .hamburger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 30px;
+      height: 20px;
+    }
+
+    .hamburger div {
+      width: 100%;
+      height: 5px;
+      background-color: #000;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: black;
+      margin-right: 78%;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: blue;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 70px;
+      left: 2rem;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: none;
+      flex-direction: column;
+      min-width: 180px;
+      z-index: 10;
+    }
+
+    .dropdown-menu a {
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    .hero-section {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 5%;
+      background-image: url('doc.png'), url('back.png');
+      background-repeat: no-repeat, no-repeat;
+      background-position: right center, center center;
+      background-size: contain, cover;
+      flex-grow: 1;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .main-container {
+      max-width: 700px;
+      width: 100%;
+      padding: 3rem;
+      background-color: #ffffffcc;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
+    }
+
+    .main-container h2 {
+      color: #3a7073;
+      margin-bottom: 0.5rem;
+    }
+
+    .main-container ul {
+      list-style: none;
+      padding: 0;
+      line-height: 1.8;
+      text-align: left;
+      max-width: 400px;
+      margin: 1rem auto 0 auto;
+    }
+
+    .dashboard-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      max-width: 900px;
+      width: 100%;
+      margin-top: 2rem;
+    }
+
+    .dashboard-btn {
+      flex: 1 1 140px;
+      max-width: 180px;
+      text-align: center;
+      padding: 1.2rem;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
+      text-decoration: none;
+      color: #2b2b2b;
+      font-weight: 600;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .search-bar {
+      margin: 1.5rem 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      background-color: white;
+      width: 100%;
+      max-width: 1000px;
+      margin-right: 15%;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.7rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-bar button {
+      background-color: #007bff;
+      border: none;
+      color: white;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-left: 5px;
+    }
+
+    .search-bar button:hover {
+      background-color: #0056b3;
+    }
+
+    #search-results {
+      margin-top: 1rem;
+      color: #2b2b2b;
+      font-size: 1.1rem;
+      text-align: left;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #4e4e4e;
+      font-style: italic;
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: white;
+      width: 100%;
+    }
+
+    .contact-btn {
+      background-color: #a6f0d3;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+        background-position: center bottom, center center;
+        background-size: contain, cover;
+        padding: 2rem;
+        height: auto;
+      }
+
+      .main-container {
+        margin-bottom: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="hamburger" onclick="toggleUserDetails()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <div class="logo-text">Dashboard</div>
+
+    <div id="user-dropdown" class="dropdown-menu">
+      <a href="personal-details.html" id="go-profile">Profile</a>
+      <a href="password-security.html">Password & Security</a>
+      <a href="term-service.html">Terms of Service</a>
+      <a href="frontpage.html" id="logout-btn">Logout</a>
+    </div>
+
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#" class="contact-btn">Contact →</a>
+    </nav>
+  </header>
+
+  <section class="hero-section">
+    <div class="search-bar">
+      <input type="text" placeholder="Search for medicine...">
+      <button>Search</button>
+    </div>
+
+    <div id="search-results"></div>
+
+    <div class="main-container">
+      <h2>Welcome, <span style="color: #2b2b2b;">[Lapuz]</span>!</h2>
+      <p>Here’s a quick summary of your account:</p>
+      <ul>
+        <li>📌 <strong>Next medicine:</strong> NOT SET</li>
+        <li>⏰ <strong>Reminders set:</strong> NOT SET</li>
+        <li>📅 <strong>Total schedules this week:</strong> NOT SET</li>
+      </ul>
+
+      <div class="dashboard-grid">
+        <a class="dashboard-btn" href="#">Notification</a>
+        <a class="dashboard-btn" href="#">Saved</a>
+        <a class="dashboard-btn" href="#">Add Reminders</a>
+        <a class="dashboard-btn" href="#">See Reminders</a>
+        <a class="dashboard-btn" href="#">History</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    In-depth Knowledge, Medication Made Simple
+  </footer>
+
+  <script>
+    const medicines = [
+      "Paracetamol",
+      "Ibuprofen",
+      "Amoxicillin",
+      "Cetirizine",
+      "Metformin",
+      "Loperamide",
+      "Omeprazole",
+      "Aspirin",
+      "Losartan",
+      "Simvastatin"
+    ];
+
+    function toggleUserDetails() {
+      const dropdown = document.getElementById('user-dropdown');
+      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    window.addEventListener('click', function (e) {
+      const dropdown = document.getElementById('user-dropdown');
+      const hamburger = document.querySelector('.hamburger');
+      if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+
+    document.querySelector('.search-bar button').addEventListener('click', () => {
+      const query = document.querySelector('.search-bar input').value.toLowerCase();
+      const resultsDiv = document.getElementById('search-results');
+      const matched = medicines.filter(med => med.toLowerCase().includes(query));
+
+      if (query === "") {
+        resultsDiv.innerHTML = `<p>Please enter a search term.</p>`;
+      } else if (matched.length > 0) {
+        resultsDiv.innerHTML = `<strong>Results:</strong><ul>${matched.map(m => `<li>${m}</li>`).join('')}</ul>`;
+      } else {
+        resultsDiv.innerHTML = `<p>No medicine found for "<strong>${query}</strong>".</p>`;
+      }
+    });
+
+    // Dropdown navigation functionality
+    document.getElementById("go-profile").addEventListener("click", function () {
+      window.location.href = "profile.html"; // Make sure profile.html exists
+    });
+
+    document.getElementById("logout-btn").addEventListener("click", function () {
+      alert("You have been logged out.");
+      window.location.href = "frontpage.html"; // Redirect to your homepage or login
+    });
+  </script>
+
+</body>
+</html>

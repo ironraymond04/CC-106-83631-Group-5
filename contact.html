@@ -1,124 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>KnowMed Contact</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KnowMed Contact</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-image: url('back.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .wrapper {
+      flex: 1;
+      position: relative;
+    }
+
+    header.navbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 2rem;
+      color: black;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: black;
+    }
+
+    .logo-container img {
+     height: 30px; /* Set a fixed height */
+     width: auto;  /* Automatically adjusts the width to maintain the aspect ratio */
+    }
+
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: blue;
+    }
+
+    .contact-btn {
+      background-color: #a6f0d3;
+      padding: 0.5rem 0.75rem;
+      border-radius: 10%;
+      text-decoration: none;
+      color: #000;
+    }
+
+    .contact-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 150px;
+      padding: 0rem;
+      position: relative;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      max-width: 600px;
+      width: 100%;
+      text-align: left;
+      z-index: 2;
+    }
+
+    .contact-card h2 {
+      margin-bottom: 1.5rem;
+      color: #333;
+    }
+
+    .contact-info {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 2;
+      flex: 1;
+    }
+
+    .contact-info i {
+      margin-right: 8px;
+      color: #0077cc;
+    }
+
+    /* Image outside of the box */
+    .contact-img {
+      position: absolute;
+      right: -100px;  /* Position the image outside the card */
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .contact-img img {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5rem 2%;
+      background-size: contain;
+      background-position: right center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin-top: 40%;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: white;
+      color: #888;
+      font-size: 0.9rem;
+    }
+
+  </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <img src="logo.png" alt="KnowMed Logo" />
+  <div class="wrapper">
+    <header class="navbar">
+      <div class="logo-container">
+        <img src="logo.png" alt="KnowMed Logo"> 
+        <div class="logo-text">KnowMed</div>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="contact-btn">Contact →</a>
+      </nav>
+    </header>
+
+    <div class="contact-section">
+      <div class="contact-card">
+        <div class="contact-info">
+          <h2>Get in Touch</h2>
+          <p><i>📘</i> Facebook: <strong>KnowMed Official</strong></p>
+          <p><i>📸</i> Instagram: <strong>@knowmed_ph</strong></p>
+          <p><i>📞</i> +63 930 561 2995</p>
+          <p><i>📧</i> contact@gmail.com</p>
         </div>
-        <div class="nav">
-            <a href="index.html">Home</a>
-            <a href="about2.html">About</a>
-            <a href="contact.html" class="active">Contact</a>
-        </div>
+      </div>
+
+      <div class="contact-img">
+        <img src="doc.png" alt="Doctor Image">
+      </div>
     </div>
-    <div class="contact-container">
-        <div class="contact-card">
-            <div class="icon">
-                <img src="phone.png" alt="Phone Icon"/>
-            </div>
-            <h3>Talk through phone</h3>
-            <p>"Having question or trouble with our website, you can reach out to us"</p>
-            <p>+63 951 834 9615</p>
-        </div>
-        <div class="contact-card">
-            <div class="icon">
-                <img src="gmail.png" alt="Gmail Icon"/>
-            </div>
-            <h3>Contact through Gmail</h3>
-            <p>"Having question or trouble with our website, you can reach out to us"</p>
-            <p>Email: Knowme@gmail.com</p>
-        </div>
-    </div>
+  </div>
+
+  <footer>
+    In-depth Knowledge, Medication Made Simple
+  </footer>
 </body>
 </html>
-<style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background-image: url('bg home.png'); /* ← Replace with your image name */
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    min-height: 100vh; /* Ensures the background covers the screen */
-}
-
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    background-color: #f1f1f1;
-    align-items: center;
-}
-
-.logo img {
-    width: 50px;
-}
-
-.nav a {
-    margin: 0 15px;
-    text-decoration: none;
-    color: #333;
-}
-
-.nav a.active {
-    font-weight: bold;
-    background-color: #3ef4a5; 
-    color: white;
-    padding: 8px 16px;
-    border-radius: 6px;
-}
-
-
-.contact-container {
-    display: flex;
-    justify-content: space-around;
-    margin: 50px 0;
-}
-
-.contact-card {
-    background-color: #fff;
-    padding: 20px;
-    width: 250px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-.contact-card .icon img {
-    width: 50px;
-}
-
-.contact-card h3 {
-    margin-top: 20px;
-    font-size: 1.2rem;
-    color: #333;
-}
-
-.contact-card p {
-    margin-top: 10px;
-    color: #666;
-}
-
-.footer {
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-}
-
-.footer img {
-    width: 100px;
-}
-
-</style>

@@ -3,250 +3,97 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KnowMed - Sign-up</title>
+  <title>KnowMed - Register</title>
   <link rel="icon" type="image/x-icon" href="knowmed.ico">
-  <style>
-    * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
-}
-    body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: #f4f8fb;
-}
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.5rem;
-  color: #3a7073;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-  border-bottom: 2px solid transparent;
-}
-
-.contact-btn {
-  background: #a6f0d3;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.main-container {
-  padding: 2rem;
-  text-align: center;
-  position: relative;
-  background-image: url("bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.back-arrow {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  font-size: 1.5rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  width: 300px;
-  margin: 3rem auto;
-}
-
-.form-container input {
-  padding: 0.75rem;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-  font-size: 1rem;
-}
-
-.login-btn {
-  padding: 0.75rem;
-  border-radius: 10px;
-  background-color: #8fa7b6;
-  color: white;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.bottom-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.bottom-buttons button {
-  padding: 0.75rem 1.5rem;
-  border-radius: 12px;
-  font-size: 1.1rem;
-  border: 1px solid #999;
-  background-color: #fff;
-  cursor: pointer;
-}
-
-.sign-up-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-footer {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  background-color: #dde4eb;
-}
-  .sign-in-button {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #007BFF;
-  color: white;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-a {
-    text-decoration: none;
-    color: black
-}
-
-.hero {
-    background-image: url("bg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-label {
-    text-align: left;
-}
-  </style>
-  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header class="navbar">
     <div class="logo">
-      <img src="knowmed.png" alt="KnowMed logo" width="50px" height="50px"/>
+      <img src="logo.png" alt="KnowMed logo" width="50px" height="50px"/>
       <span>KnowMed</span>
     </div>
     <nav class="nav-links">
-      <a href="index.html">Home</a>
+      <a href="frontpage.html">Home</a>
       <a href="about.html">About</a>
-      <a href="learning.html">Learning</a>
       <button class="contact-btn"><a href="contact.html">Contact →</a></button>
     </nav>
   </header>
 
-  <section class="hero">
-  <main class="main-container">
-    <button class="back-arrow"><a href="index.html">←</a></button>
+  <section class="hero-section">
+    <div class="form-wrapper">
+      <form class="form-container">
+        <label for="name">Name:</label>
+        <input type="text" placeholder="Name" id="name"/>
+        
+        <label for="age">Age:</label>
+        <input type="number" placeholder="Age" id="age"/>
 
-    <form class="form-container">
-      <label>Name: </label>
-      <input type="text" placeholder="Name:" id="name"/>
-      <label>Email: </label>
-      <input type="email" placeholder="Email:" id="email"/>
-      <label>Password: </label>
-      <input type="password" placeholder="Password:" id="password"/>
-      <label>Confirm Password:</label>
-      <input type="password" placeholder="Confirm password:" id="confirm-password"/>
-      <button type="submit" class="login-btn"><a href="main.html">Log in</a></button>
-    </form>
+        <label for="gender">Gender:</label>
+        <select id="gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
 
-    <div class="social-icons">
-      <img src="facebook-icon.png" style="width: 50px; height: 50px;" alt="Facebook" />
-      <img src="instagram-icon.png" style="width: 50px; height: 50px;" alt="Instagram" />
+        <label for="email">Email:</label>
+        <input type="email" placeholder="Email" id="email"/>
+
+        <label for="password">Password:</label>
+        <input type="password" placeholder="Password" id="password"/>
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" placeholder="Confirm Password" id="confirm-password"/>
+
+        <button type="submit" class="login-btn">Sign Up</button>
+      </form>
     </div>
-</section>
-
-    <footer>
-    <div class="bottom-buttons">
-      <a href="sign-in.html" class="sign-in-button">Sign in</a>
-      <a href="sign-up.html" class="sign-up-button">Sign up</a>
-    </div>
-    </footer>
-  </main>
+  </section>
 
   <script>
-  const supabaseUrl = "https://brxituhthyyvtjkbonxm.supabase.co";
-  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyeGl0dWh0aHl5dnRqa2JvbnhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTk5NjQsImV4cCI6MjA2MTEzNTk2NH0.5DItQGaYbPU5MUa7TqKKLfW5-05HVnRUYeLpoFaVAl4";
+    const supabaseUrl = "https://brxituhthyyvtjkbonxm.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyeGl0dWh0aHl5dnRqa2JvbnhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTk5NjQsImV4cCI6MjA2MTEzNTk2NH0.5DItQGaYbPU5MUa7TqKKLfW5-05HVnRUYeLpoFaVAl4";
 
-  const { createClient } = supabase;
-  const supabaseClient = createClient(supabaseUrl, supabaseKey);
+    const { createClient } = supabase;
+    const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
-  const form = document.querySelector(".form-container");
+    console.log(supabaseClient);
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    const form = document.querySelector(".form-container");
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirm-password").value;
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    if (!name || !email || !password || !confirmPassword) {
-      alert("Please fill in all fields.");
-      return;
-    }
+      const name = document.getElementById("name").value.trim();
+      const age = document.getElementById("age").value;
+      const gender = document.getElementById("gender").value;
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirm-password").value;
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match.");
-      return;
-    }
+      if (!name || !age || !gender || !email || !password || !confirmPassword) {
+        alert("Please fill in all fields.");
+        return;
+      }
 
-    const { data, error } = await supabaseClient
-      .from("users")
-      .insert([{ name, email, password }]); // Note: store hashed passwords in production!
+      if (password !== confirmPassword) {
+        alert("Passwords do not match.");
+        return;
+      }
 
-    if (error) {
-      console.error(error);
-      alert("Registration failed. Please try again.");
-    } else {
-      alert("Registration successful!");
-      window.location.href = "main.html"; // or redirect as needed
-    }
-  });
+      const { data, error } = await supabaseClient
+        .from("users")
+        .insert([{ name, age, gender, email, password }]);
+
+      if (error) {
+        console.error(error);
+        alert("Registration failed. Please try again.");
+      } else {
+        alert("Registration successful!");
+        window.location.href = "log-in.html";
+      }
+    });
   </script>
 </body>
 </html>
