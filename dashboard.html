@@ -235,6 +235,7 @@
       }
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
@@ -255,9 +256,9 @@
     </div>
 
     <nav class="nav-links">
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#" class="contact-btn">Contact →</a>
+      <a href="dashboard.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="contact-btn">Contact →</a>
     </nav>
   </header>
 
@@ -270,7 +271,7 @@
     <div id="search-results"></div>
 
     <div class="main-container">
-      <h2>Welcome, <span style="color: #2b2b2b;">[Lapuz]</span>!</h2>
+      <h2 id="name"></h2>
       <p>Here’s a quick summary of your account:</p>
       <ul>
         <li>📌 <strong>Next medicine:</strong> NOT SET</li>
@@ -342,7 +343,30 @@
       alert("You have been logged out.");
       window.location.href = "frontpage.html"; // Redirect to your homepage or login
     });
-  </script>
+
+    const supabaseUrl = "https://brxituhthyyvtjkbonxm.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyeGl0dWh0aHl5dnRqa2JvbnhtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDU1NTk5NjQsImV4cCI6MjA2MTEzNTk2NH0.5DItQGaYbPU5MUa7TqKKLfW5-05HVnRUYeLpoFaVAl4";
+
+    const { createClient } = supabase;
+    const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+    console.log(supabaseClient);
+
+    async function fetchUserData() {
+      const { data, error }= await supabaseClient
+        .from('users')
+        .select('*')
+        .eq('user_id', 'fed4293f-b2b8-4881-8550-80a57fb19721');
+
+        if (error) {
+          console.error('ERROR FETCHING USER DATA:', error);
+        } else {
+          const user = data[0];
+          document.getElementById('name').innerText = "Hello, " + user.name + "!";
+        }
+    }
+    fetchUserData();
+    </script>
 
 </body>
 </html>
