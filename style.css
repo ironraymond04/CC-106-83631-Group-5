@@ -314,15 +314,14 @@ a {
 
   body {
     margin: 0;
-   font-family: 'Segoe UI', sans-serif;
-   background: #f4f8fb; /* This is a fallback background color */
-   height: 100vh; /* Make sure the body takes up the full height of the screen */
-   background-image: url('back.png'); /* Your background image here */
-   background-size: cover;
-   background-position: center center;
-   background-attachment: fixed; /* Optional: makes the background stay fixed while scrolling */
-  } 
-
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f8fb;
+    height: 100vh;
+    background-image: url('back.png');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+  }
 
   .navbar {
     display: flex;
@@ -365,30 +364,34 @@ a {
     cursor: pointer;
   }
 
-  .hero-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 90vh;
-    padding: 2rem 5%;
-    background-image: url("doc.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right center;
-  }
+.hero-section {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 90vh;
+  padding: 2rem;
+  background-image: url("doc.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right center;
+}
 
-  .form-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    margin-right: 10rem;
-  }
+.form-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  margin-right: 0; /* Remove fixed margin */
+  margin-top: 2rem;
+}
+
 
   .form-container {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    width: 300px;
+    width: 500px;
     background-color: #ffffffcc;
     padding: 2rem;
     border-radius: 10px;
@@ -430,7 +433,20 @@ a {
     color: black;
   }
 
+  /* Mobile Responsive */
+  @media (max-width: 600px) {
+    .form-container {
+      width: 90%;
+    }
 
+    .form-wrapper {
+      margin-right: 0;
+    }
 
-
-
+    .hero-section {
+      flex-direction: column;
+      background-position: bottom center;
+      background-size: 80%;
+    }
+  }
+</style>
