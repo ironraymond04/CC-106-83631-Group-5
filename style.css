@@ -1,3 +1,4 @@
+/* Log-in page */
 * {
   margin: 0;
   padding: 0;
@@ -59,33 +60,34 @@ html, body {
 }
 
 .hero {
-  display: flex;
-  justify-content: center; 
+    display: flex;
+  justify-content: flex-start; 
   align-items: center;
-  height: calc(100vh - 80px); 
+  height: 100vh;
+  padding-left: 30%;
+  padding-right: 20%; 
   background-image: url("doc.png");
   background-repeat: no-repeat;
-  background-size: 40%;
-  background-position: center right; 
+  background-size: contain;
+  background-position: right center;
 }
 
 .main-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.3);
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  width: 30%;
-  min-width: 300px;
+  box-shadow: 0 4px 12px rgba(0, 1, 0, 0.5);
+  width: 20%;
+  min-width: 575px;
 }
 
 .form-container {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 100%;
+  min-width: 500px;
 }
 
 .form-container label {
@@ -99,6 +101,7 @@ html, body {
   border: 1px solid #ccc;
   font-size: 1rem;
   width: 100%;
+  
 }
 
 .login-btn {
@@ -109,6 +112,9 @@ html, body {
   font-size: 1rem;
   border: none;
   cursor: pointer;
+}
+.login-btn:hover {
+  background-color:burlywood;
 }
 
 a {
@@ -209,16 +215,17 @@ a {
     color: #000;
   }
 
-  .hero-section {
+  .hero-main {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10rem 5%;
-    background-image: url('doc.png');
-    background-size: contain;
-    background-position: right center;
-    background-repeat: no-repeat;
-    height: 90vh;
+    background-image: url('doctor.gif');
+     padding-right: 20%; 
+   background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right center;
+    height: 100vh;
   }
   
   
@@ -267,11 +274,18 @@ a {
     border: 1px solid #999;
     color: #000;
   }
+  .sign-in:hover{
+    background-color: chartreuse;
+  }
   
   .sign-up {
     background-color: white;
     border: 1px solid #999;
     color: #000;
+  }
+
+  .sign-up:hover {
+    background-color: cornflowerblue;
   }
   
   .hero-image img {
@@ -297,6 +311,7 @@ a {
   }
   
   
+  
 
 
 
@@ -315,12 +330,12 @@ a {
   body {
     margin: 0;
    font-family: 'Segoe UI', sans-serif;
-   background: #f4f8fb; /* This is a fallback background color */
-   height: 100vh; /* Make sure the body takes up the full height of the screen */
-   background-image: url('back.png'); /* Your background image here */
+   background: #f4f8fb; 
+   height: 100vh;
+   background-image: url('back.png'); 
    background-size: cover;
    background-position: center center;
-   background-attachment: fixed; /* Optional: makes the background stay fixed while scrolling */
+   background-attachment: fixed;
   } 
 
 
@@ -365,35 +380,43 @@ a {
     cursor: pointer;
   }
 
-  .hero-section {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 90vh;
-    padding: 2rem 5%;
-    background-image: url("doc.png");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: right center;
-  }
+ .hero-section {
+  display: flex;
+  justify-content: flex-start;
+  height: 100vh;
+  padding-left: 30%; 
+  padding-right: 20%; 
+  background-image: url("doc.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right center;
+}
 
-  .form-wrapper {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    margin-right: 10rem;
-  }
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 1, 0, 0.5);
+  width: fit-content;
+  min-width: 575px;
+  margin-right: auto; 
+}
 
-  .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    width: 300px;
-    background-color: #ffffffcc;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 300px;
+  background-color: #ffffffcc;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
 
   .form-container input,
   .form-container select {
@@ -429,6 +452,19 @@ a {
     text-decoration: none;
     color: black;
   }
+
+@media (max-width: 768px) {
+  .hero-section {
+    background-position: bottom center;
+    background-size: 80%;
+    padding: 1rem;
+  }
+
+  .form-wrapper {
+    min-width: unset;
+    width: 90%;
+  }
+}
 
 
 

@@ -37,10 +37,10 @@
     header.navbar {
       width: 100%;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      background-color: white;
-      padding: 1rem 2rem;
+      background-color: #007BFF;
+      padding: 1rem; /* Increased for bigger header */
       color: black;
       position: fixed;
       top: 0;
@@ -48,23 +48,43 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
+    .left-header {
+      position: absolute;
+      left: 2rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .back-btn {
+      background-color: transparent;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      color: #d1e8ff;
+    }
+
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 1rem;
+      justify-content: center; /* Center the logo-container */
     }
 
     .logo-text {
-      font-size: 1.5rem;
+      font-size: 1.5rem; 
       font-weight: bold;
-      color: black;
+      color: white;
     }
 
     .logo-container img {
-     height: 30px; /* Set a fixed height */
-     width: auto;  /* Automatically adjusts the width to maintain the aspect ratio */
+      height: 50px; /* Bigger logo */
+      width: auto;
     }
-
 
     .nav-links {
       display: flex;
@@ -95,7 +115,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-top: 150px;
+      margin-top: 180px; /* adjusted because header is taller */
       padding: 0rem;
       position: relative;
     }
@@ -131,10 +151,9 @@
       color: #0077cc;
     }
 
-    /* Image outside of the box */
     .contact-img {
       position: absolute;
-      right: -100px;  /* Position the image outside the card */
+      right: -100px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 1;
@@ -159,21 +178,18 @@
       color: #888;
       font-size: 0.9rem;
     }
-
   </style>
 </head>
 <body>
   <div class="wrapper">
     <header class="navbar">
+      <div class="left-header">
+        <button class="back-btn" onclick="goBack()">←</button>
+      </div>
       <div class="logo-container">
         <img src="logo.png" alt="KnowMed Logo"> 
         <div class="logo-text">KnowMed</div>
       </div>
-      <nav class="nav-links">
-        <a href="frontpage.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="contact.html" class="contact-btn">Contact →</a>
-      </nav>
     </header>
 
     <div class="contact-section">
@@ -196,5 +212,11 @@
   <footer>
     In-depth Knowledge, Medication Made Simple
   </footer>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
 </body>
 </html>

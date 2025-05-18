@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KnowMed Dashboard (Add reminders)</title>
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background: #c6d5e1;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    header {
+      background-color: #0d79d0;
+      padding: 14px 0;
+      text-align: center;
+      font-weight: 700;
+      font-size: 22px;
+      user-select: none;
+      box-shadow: 0 2px 8px rgba(13, 121, 208, 0.6);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: center;
+      margin: 20px auto;
+      width: 100%;
+      max-width: 800px;
+      padding: 0 16px;
+    }
+
+    .bar-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+    }
+
+    button.back-btn {
+      background-color: #b3c0ca;
+      border: none;
+      border-radius: 4px;
+      padding: 6px 12px;
+      font-weight: 700;
+      font-family: monospace;
+      cursor: pointer;
+      box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+      transition: background-color 0.3s ease;
+    }
+
+    button.back-btn:hover {
+      background-color: #9aa7b3;
+    }
+
+    .search-box {
+      flex-grow: 1;
+      display: flex;
+      align-items: center;
+      background: #f4eafc;
+      border-radius: 12px;
+      padding: 10px 20px;
+      box-shadow: inset 1px 1px 1px black, inset -1px -1px 1px black;
+    }
+
+    .search-box input[type="search"] {
+      flex-grow: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 14px;
+      color: #555;
+      font-family: monospace;
+      padding: 4px 6px;
+    }
+
+    .search-box button.add-btn {
+      margin-left: 6px;
+      background-color: #dcd3ee;
+      border-radius: 12px;
+      padding: 4px 12px;
+      font-weight: 700;
+      font-size: 18px;
+      color: #5c3e91;
+      border: none;
+      cursor: pointer;
+      box-shadow: 4px 4px 6px #b3a6d4, -4px -4px 6px #ffffff;
+      transition: background-color 0.3s ease, transform 0.15s ease;
+    }
+
+    .search-box button.add-btn:hover {
+      background-color: #bfb3de;
+      transform: scale(1.1);
+    }
+
+    .reminder-container {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      padding: 20px;
+    }
+
+    ul.reminders-list {
+      list-style: none;
+      margin: 0;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      border: 2px solid #1573d3;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 480px;
+      box-sizing: border-box;
+      max-height: 100%;
+      overflow-y: auto;
+    }
+
+    ul.reminders-list li {
+      background-color: #7f8d95;
+      margin: 14px 0;
+      padding: 14px 18px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: white;
+      font-size: 18px;
+      font-family: monospace;
+      text-align: center;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    ul.reminders-list li .reminder-text {
+      flex-grow: 1;
+      white-space: pre-line;
+      text-align: center;
+    }
+
+    ul.reminders-list li input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: #5c3e91;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    ul.reminders-list li button.delete-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 22px;
+      color: #222;
+    }
+
+    ul.reminders-list li button.delete-btn:hover {
+      color: #a82929;
+    }
+
+    footer {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-size: 16px;
+      text-align: center;
+      margin: 24px 0 16px;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+
+<header>KnowMed Dashboard (Add reminders)</header>
+
+<div class="top-bar">
+  <div class="bar-content">
+    <button class="back-btn" onclick="goBack()">Back</button>
+    <div class="search-box">
+      <input type="search" id="search" placeholder="Search reminders..." oninput="filterReminders()" />
+      <button class="add-btn" onclick="addReminder()">+</button>
+    </div>
+  </div>
+</div>
+
+<div class="reminder-container">
+  <ul class="reminders-list" id="reminderList"></ul>
+</div>
+
+<footer>In-depth Knowledge, Medication Made Simple</footer>
+
+<script>
+  let reminders = [
+    { id: 1, name: 'maintenance', time: '4:00 PM', done: true },
+    { id: 2, name: 'maintenance diabetic', time: '4:30 PM', done: true },
+    { id: 3, name: 'maintenance High blood', time: '5:00 PM', done: true }
+  ];
+
+  const reminderList = document.getElementById('reminderList');
+  const searchInput = document.getElementById('search');
+
+  function renderReminders(list) {
+    reminderList.innerHTML = '';
+    list.forEach(reminder => {
+      const li = document.createElement('li');
+
+      const reminderText = document.createElement('div');
+      reminderText.className = 'reminder-text';
+      reminderText.textContent = `Name: ${reminder.name}\nTime: ${reminder.time}`;
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = reminder.done;
+      checkbox.addEventListener('change', () => toggleDone(reminder.id));
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.title = 'Delete reminder';
+      deleteBtn.innerHTML = '🗑️';
+      deleteBtn.addEventListener('click', () => deleteReminder(reminder.id));
+
+      li.appendChild(reminderText);
+      li.appendChild(checkbox);
+      li.appendChild(deleteBtn);
+
+      reminderList.appendChild(li);
+    });
+  }
+
+  function toggleDone(id) {
+    reminders = reminders.map(r => r.id === id ? { ...r, done: !r.done } : r);
+    renderReminders(filterReminders());
+  }
+
+  function deleteReminder(id) {
+    reminders = reminders.filter(r => r.id !== id);
+    renderReminders(filterReminders());
+  }
+
+  function filterReminders() {
+    const query = searchInput.value.toLowerCase();
+    const filtered = reminders.filter(r => r.name.toLowerCase().includes(query));
+    renderReminders(filtered);
+    return filtered;
+  }
+
+  function addReminder() {
+    const name = prompt('Enter reminder name:');
+    if (!name) return alert('Name is required.');
+
+    const time = prompt('Enter time (e.g. 4:00 PM):');
+    if (!time) return alert('Time is required.');
+
+    const newReminder = {
+      id: Date.now(),
+      name,
+      time,
+      done: false
+    };
+    reminders.push(newReminder);
+    filterReminders();
+  }
+
+  function goBack() {
+    window.history.back();
+  }
+
+  renderReminders(reminders);
+</script>
+
+</body>
+</html>
