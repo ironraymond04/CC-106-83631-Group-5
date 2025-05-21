@@ -10,6 +10,7 @@ console.log(supabaseClient);
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Page loaded.");
 
+  //LOG-IN FORM
   // If login form exists, run login logic
   const form = document.querySelector(".form-container");
   if (form) {
