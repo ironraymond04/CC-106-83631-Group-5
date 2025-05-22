@@ -281,9 +281,9 @@
 
       <div class="dashboard-grid">
         <a class="dashboard-btn" href="notification.html">Notification</a>
-        <a class="dashboard-btn" href="#">Saved</a>
+        <a class="dashboard-btn" href="saved.html">Saved</a>
         <a class="dashboard-btn" href="setreminders.html">Add Reminders</a>
-        <a class="dashboard-btn" href="#">See Reminders</a>
+        <a class="dashboard-btn" href="reminders.html">See Reminders</a>
         <a class="dashboard-btn" href="history.html">History</a>
       </div>
     </div>
@@ -328,9 +328,9 @@
       if (query === "") {
         resultsDiv.innerHTML = '<p>Please enter a search term.</p>';
       } else if (matched.length > 0) {
-        resultsDiv.innerHTML = "<strong>Results:</strong><ul>${matched.map(m => `<li>${m}</li>).join('')}</ul>`";
+        resultsDiv.innerHTML = `<strong>Results:</strong><ul>${matched.map(m => `<li>${m}</li>`).join('')}</ul>`;
       } else {
-        resultsDiv.innerHTML = '<p>No medicine found for "<strong>${query}</strong>".</p>';
+        resultsDiv.innerHTML = `<p>No medicine found for "<strong>${query}</strong>".</p>`;
       }
     });
 
