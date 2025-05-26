@@ -4,10 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>KnowMed Dashboard</title>
-  <!-- Favicon -->
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <!-- FontAwesome for bell icon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="remindersAlarm.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -128,7 +127,7 @@
 
     .tab-btn {
       display: inline-block;
-      text-decoration: none; /* remove underline */
+      text-decoration: none; 
       padding: 8px 20px;
       border-radius: 20px;
       font-weight: bold;
@@ -163,6 +162,16 @@
       padding: 15px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+
+    .notification-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: 0.3s;
+}
+
 
     .notif-left {
       display: flex;
@@ -209,34 +218,27 @@
       }
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
   <header>
-    KnowMed Dashboard (Notification)
+   Notification
   </header>
 
   <div class="wrapper">
     <div class="main-container">
-
-      <!-- Back Button -->
       <button class="back-btn" onclick="window.location.href='dashboard.html'">⬅ Back</button>
-
-      <!-- Search Bar + Notification Icon -->
       <div class="search-bar">
         <input type="text" placeholder="Search for medicine...">
         <button>Search</button>
-        <i class="fas fa-bell notification-icon"></i>
+        <img src="bell.png" alt="Notification" class="notification-icon" />
       </div>
 
-      <!-- Tabs as Links -->
       <div class="tabs">
         <a href="notification.html" class="tab-btn new">New</a>
         <a href="unread.html" class="tab-btn unread">Unread</a>
       </div>
 
-      <!-- Notification Items -->
       <div class="notifications">
         <div class="notification">
           <div class="notif-left">
@@ -281,7 +283,5 @@
     In-depth Knowledge, Medication Made Simple
   </footer>
 
-  <script src="script.js"></script>
-  
 </body>
 </html>

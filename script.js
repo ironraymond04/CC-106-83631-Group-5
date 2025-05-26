@@ -5,12 +5,9 @@ const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS
 const { createClient } = supabase;
 const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
-console.log(supabaseClient);
-
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Page loaded.");
 
-  //LOG-IN FORM
   // If login form exists, run login logic
   const form = document.querySelector(".form-container");
   if (form) {
@@ -43,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       alert("Login successful!");
-      window.location.href = "dashboard.html";
+      window.location.href = "main.html";
     });
   }
 });

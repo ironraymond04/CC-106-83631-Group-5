@@ -2,9 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>KnowMed Contact</title>
-  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <link rel="icon" type="image/x-icon" href="knowmed.ico" />
+  <script src="remindersAlarm.js"></script>
   <style>
     * {
       margin: 0;
@@ -15,75 +16,46 @@
 
     html, body {
       height: 100%;
+      overflow: hidden;
     }
 
     body {
-      display: flex;
-      flex-direction: column;
       background-image: url('back.png');
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
       background-attachment: fixed;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .wrapper {
-      flex: 1;
-      position: relative;
+      color: #444;
     }
 
     header.navbar {
       width: 100%;
+      height: 80px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
-      background-color: #007BFF;
-      padding: 1rem; /* Increased for bigger header */
-      color: black;
+      background-color: white;
+      padding: 1rem 2rem;
       position: fixed;
       top: 0;
       z-index: 1000;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
 
-    .left-header {
-      position: absolute;
-      left: 2rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .back-btn {
-      background-color: transparent;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-    }
-
-    .back-btn:hover {
-      color: #d1e8ff;
-    }
-
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      justify-content: center; /* Center the logo-container */
-    }
-
-    .logo-text {
-      font-size: 1.5rem; 
-      font-weight: bold;
-      color: white;
+      gap: 10px;
     }
 
     .logo-container img {
-      height: 50px; /* Bigger logo */
-      width: auto;
+      height: 35px;
+      width: 35px;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      color: #3a7073;
     }
 
     .nav-links {
@@ -111,114 +83,211 @@
       color: #000;
     }
 
-    .contact-section {
+    /* Hero section with gradient overlay and backdrop blur */
+    .hero-section {
       display: flex;
-      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      margin-top: 180px; /* adjusted because header is taller */
-      padding: 0rem;
+      height: calc(100vh - 80px);
+      padding: 0 5%;
+      margin-top: 80px;
       position: relative;
+      background-image: url('back.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
-    .contact-card {
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(120deg, rgba(166, 240, 211, 0.3), rgba(58, 112, 115, 0.3));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Main container with blur effect and translucent background */
+    .main-container {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      background-color: white;
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.25);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 20%;
+      min-width: 575px;
+      z-index: 2;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    /* Contact card styling matching About card */
+    .contact-card {
+      background-color: rgba(255, 255, 255, 0.8);
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       max-width: 600px;
       width: 100%;
       text-align: left;
-      z-index: 2;
+      z-index: 10;
     }
 
     .contact-card h2 {
-      margin-bottom: 1.5rem;
+      color: #3a7073;
+      margin-bottom: 0.5rem;
+      font-size: 50px;
+      text-align: center;
+    }
+    .contact-card p.intro {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .contact-info p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
       color: #333;
     }
 
-    .contact-info {
-      font-size: 1.1rem;
-      color: #444;
-      line-height: 2;
-      flex: 1;
-    }
-
-    .contact-info i {
-      margin-right: 8px;
+    .contact-info p strong {
       color: #0077cc;
+      margin-right: 0.4rem;
+      font-weight: 600;
     }
 
-    .contact-img {
-      position: absolute;
-      right: -100px;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
-    }
-
-    .contact-img img {
+    /* Hero image with floating animation */
+   .hero-img {
+      flex: 1;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-      padding: 5rem 2%;
-      background-size: contain;
-      background-position: right center;
-      background-repeat: no-repeat;
-      height: 100vh;
-      margin-top: 40%;
+      max-width: 500px;
+      z-index: 5;
     }
+
+    .hero-img img {
+      height: 80vh;
+      width: auto;
+      object-fit: contain;
+      animation: floatImg 4s ease-in-out infinite;
+    }
+
+    @keyframes floatImg {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
 
     footer {
-      text-align: center;
-      padding: 1rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
       background: white;
       color: #888;
       font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+        margin-top: 80px;
+        padding: 1rem 2rem;
+      }
+
+      .main-container {
+        width: 90%;
+        padding: 1.5rem 2rem;
+        margin-bottom: 2rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      }
+
+      .contact-card {
+        max-width: 100%;
+      }
+
+      .hero-img {
+        margin-top: 1rem;
+      }
+
+      .hero-img img {
+        height: auto;
+        max-width: 100%;
+        max-height: 350px;
+        border-radius: 16px;
+      }
+
+      .nav-links {
+        display: none;
+      }
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-  <div class="wrapper">
-    <header class="navbar">
-      <div class="left-header">
-        <button class="back-btn" onclick="goBack()">←</button>
-      </div>
-      <div class="logo-container">
-        <img src="logo.png" alt="KnowMed Logo"> 
-        <div class="logo-text">KnowMed</div>
-      </div>
-    </header>
+  <header class="navbar">
+    <div class="logo-container">
+      <img src="logo.png" alt="Logo" />
+      <div class="logo-text">KnowMed</div>
+    </div>
+    <nav class="nav-links">
+      <a href="dashboard.html" class="active">Home</a>
+      <a href="dashboardabout.html">About</a>
+      <a href="dashboardContact.html" class="contact-btn">Contact →</a>
+    </nav>
+  </header>
 
-    <div class="contact-section">
+  <section class="hero-section">
+    <div class="main-container">
       <div class="contact-card">
+        <h2>GET IN TOUCH</h2>
+        <p class="intro">
+          Whether you have a question, feedback, or need assistance, we're here to help. Reach out to us through any of the following channels:
+        </p>
         <div class="contact-info">
-          <h2>Get in Touch</h2>
-          <p><i>📘</i> Facebook: <strong>KnowMed Official</strong></p>
-          <p><i>📸</i> Instagram: <strong>@knowmed_ph</strong></p>
-          <p><i>📞</i> +63 930 561 2995</p>
-          <p><i>📧</i> contact@gmail.com</p>
+          <p><strong>📘 Facebook:</strong> KnowMed Official</p>
+          <p><strong>📸 Instagram:</strong> @knowmed_ph</p>
+          <p><strong>📞 Phone:</strong> +63 930 561 2995</p>
+          <p><strong>📧 Email:</strong> contact@gmail.com</p>
         </div>
       </div>
-
-      <div class="contact-img">
-        <img src="doc.png" alt="Doctor Image">
-      </div>
     </div>
-  </div>
+
+    <div class="hero-img">
+      <img src="doc.png" alt="Doctor Image">
+    </div>
+  </section>
 
   <footer>
     In-depth Knowledge, Medication Made Simple
   </footer>
-
-  <script>
-    function goBack() {
-      window.history.back();
-    }
-  </script>
-  <script src="script.js"></script>
 </body>
 </html>

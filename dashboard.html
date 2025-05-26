@@ -18,7 +18,7 @@
       background: linear-gradient(to right, #f5f9fc, #dbeef3);
       display: flex;
       flex-direction: column;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     header.navbar {
@@ -30,6 +30,13 @@
       padding: 1rem 2rem;
       color: black;
       position: relative;
+      z-index: 1000;
+    }
+
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
 
     .hamburger {
@@ -40,18 +47,34 @@
       width: 30px;
       height: 20px;
     }
+    .logo-text {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      color: #3a7073;
+    }
+
 
     .hamburger div {
       width: 100%;
-      height: 5px;
+      height: 4px;
       background-color: #000;
+      transition: 0.3s ease;
     }
 
-    .logo-text {
+    .logo-img {
+      height: 36px;
+      width: auto;
+    }
+
+    .center-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 1.5rem;
       font-weight: bold;
       color: black;
-      margin-right: 78%;
     }
 
     .nav-links {
@@ -94,7 +117,7 @@
     }
 
     .dropdown-menu a:hover {
-      background-color: #f0f0f0;
+      background-color: #67cccf;
     }
 
     .hero-section {
@@ -102,8 +125,7 @@
       justify-content: flex-start;
       align-items: center;
       padding: 0 5%;
-      background-image: url('doc.png'), url('back.png');
-      background-repeat: no-repeat, no-repeat;
+      background-image: url('back.png');
       background-position: right center, center center;
       background-size: contain, cover;
       flex-grow: 1;
@@ -112,18 +134,29 @@
     }
 
     .main-container {
-      max-width: 700px;
       width: 100%;
-      padding: 3rem;
-      background-color: #ffffffcc;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      padding: 3rem 2rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
       margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(200, 200, 200, 0.3);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .main-container:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
     }
 
     .main-container h2 {
       color: #3a7073;
       margin-bottom: 0.5rem;
+      font-size: 50px;
     }
 
     .main-container ul {
@@ -136,83 +169,139 @@
     }
 
     .dashboard-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      max-width: 900px;
-      width: 100%;
       margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.2rem;
+      width: 100%;
     }
 
     .dashboard-btn {
-      flex: 1 1 140px;
-      max-width: 180px;
-      text-align: center;
+      background-color: #f1fdfc;
+      border-radius: 12px;
       padding: 1.2rem;
-      background-color: #ffffff;
-      border-radius: 10px;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.08);
-      text-decoration: none;
+      text-align: center;
       color: #2b2b2b;
+      text-decoration: none;
       font-weight: 600;
-      transition: all 0.2s ease-in-out;
+      transition: transform 0.2s, background 0.3s;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+      display: block;
+      width: 100%;
     }
 
+    .dashboard-btn:hover {
+      transform: translateY(-5px);
+      background-color: #a6f0d3;
+    }
     .search-bar {
-      margin: 1.5rem 0;
+      margin: 2rem 0 1rem 0;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      background-color: white;
+      gap: 0.75rem;
       width: 100%;
-      max-width: 1000px;
-      margin-right: 15%;
+      max-width: 600px;
+      background: white;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+      transition: box-shadow 0.3s ease;
+      position: relative; /* for dropdown positioning */
     }
 
     .search-bar input {
-      width: 100%;
-      padding: 0.7rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: none;
       font-size: 1rem;
+      border-radius: 8px;
       outline: none;
+      background-color: #f5f8fa;
     }
 
     .search-bar button {
-      background-color: #007bff;
+      padding: 0.75rem 1.2rem;
       border: none;
+      background-color: #3a7073;
       color: white;
-      padding: 0.7rem 1rem;
       border-radius: 8px;
+      font-size: 1rem;
       cursor: pointer;
-      margin-left: 5px;
+      transition: background-color 0.2s ease;
     }
 
     .search-bar button:hover {
-      background-color: #0056b3;
+      background-color: #2b595b;
+    }
+
+    /* NEW dropdown styling for medicine search */
+    #medicine-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-top: none;
+      max-height: 250px;
+      overflow-y: auto;
+      font-size: 0.85rem;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+      z-index: 1001;
+      display: none;
+    }
+
+    #medicine-dropdown .medicine-item {
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+
+    #medicine-dropdown .medicine-item:last-child {
+      border-bottom: none;
+    }
+
+    #medicine-dropdown .medicine-item:hover {
+      background-color: #a6f0d3;
+      color: #000;
+    }
+
+    #medicine-dropdown .medicine-name {
+      font-weight: 600;
+      color: #3a7073;
+    }
+
+    #medicine-dropdown .medicine-desc {
+      font-weight: 400;
+      color: #555;
+      font-size: 0.75rem;
+      margin-top: 3px;
     }
 
     #search-results {
       margin-top: 1rem;
-      color: #2b2b2b;
-      font-size: 1.1rem;
+      font-size: 1rem;
+      color: #444;
       text-align: left;
     }
 
     footer {
-      text-align: center;
-      font-size: 0.95rem;
-      color: #4e4e4e;
-      font-style: italic;
-      margin-top: 2rem;
-      padding: 1rem;
-      background-color: white;
+      position: fixed;
+      bottom: 0;
+      left: 0;
       width: 100%;
+      height: 50px;
+      background: white;
+      color: #888;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
     }
-
     .contact-btn {
       background-color: #a6f0d3;
       padding: 0.4rem 1rem;
@@ -221,7 +310,26 @@
       color: #000;
     }
 
+    /* Responsive Styles */
     @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 2rem;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        padding: 1rem;
+        z-index: 10;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
       .hero-section {
         flex-direction: column;
         background-position: center bottom, center center;
@@ -232,119 +340,186 @@
 
       .main-container {
         margin-bottom: 2rem;
+        padding: 2rem;
+      }
+
+      .center-title {
+        font-size: 1.2rem;
       }
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
-  <header class="navbar">
-    <div class="hamburger" onclick="toggleUserDetails()">
+<header class="navbar">
+  <div class="left-section">
+    <div class="hamburger" onclick="toggleMenu()">
       <div></div>
       <div></div>
       <div></div>
     </div>
+    <img src="logo.png" alt="KnowMed Logo" class="logo-img">
+    <div class="logo-text">KnowMed</div>
+  </div>
 
-    <div class="logo-text">Dashboard</div>
+  <div class="center-title">Dashboard</div>
 
-    <div id="user-dropdown" class="dropdown-menu">
-      <a href="personal-details.html" id="go-profile">Profile</a>
-      <a href="password-security.html">Password & Security</a>
-      <a href="term-service.html">Terms of Service</a>
-      <a href="log-in.html" id="logout-btn">Logout</a>
+  <div id="user-dropdown" class="dropdown-menu">
+    <a href="personal-details.html" id="go-profile">Profile</a>
+    <a href="password-security.html">Password & Security</a>
+    <a href="term-service.html">Terms of Service</a>
+    <a href="index.html" id="logout-btn">Logout</a>
+  </div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="dashboard.html" class="contact-btn">Home →</a>
+    <a href="dashboardabout.html">About</a>
+    <a href="dashboardContact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero-section">
+  <div class="search-bar">
+    <input type="text" placeholder="Search for medicine..." id="search-input" autocomplete="off" />
+    <button id="search-btn">Search</button>
+
+    <!-- Medicine dropdown -->
+    <div id="medicine-dropdown"></div>
+  </div>
+
+  <div id="search-results"></div>
+
+  <div class="main-container">
+    <h2>Welcome, <span style="color: #000;">Lapuz</span>!</h2>
+    <p>Here’s a quick summary of your account:</p>
+    <ul>
+      <li>📌 <strong>Next medicine:</strong> NOT SET</li>
+      <li>⏰ <strong>Reminders set:</strong> NOT SET</li>
+      <li>📅 <strong>Total schedules this week:</strong> NOT SET</li>
+    </ul>
+
+    <div class="dashboard-grid">
+      <a class="dashboard-btn" href="notification.html">🔔 Notification</a>
+      <a class="dashboard-btn" href="saved.html">💾 Saved</a>
+      <a class="dashboard-btn" href="setreminders.html">⏰ Reminders</a>
+      <a class="dashboard-btn" href="history.html">📜 History</a>
     </div>
+  </div>
+</section>
 
-    <nav class="nav-links">
-      <a href="#">Home</a>
-      <a href="dashboardabout.html">About</a>
-      <a href="dashboardContact.html" class="contact-btn">Contact →</a>
-    </nav>
-  </header>
+<footer>
+  In-depth Knowledge, Medication Made Simple
+</footer>
+<script src="remindersAlarm.js"></script>
+<script>
+  function toggleUserDetails() {
+    const dropdown = document.getElementById('user-dropdown');
+    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+  }
 
-  <section class="hero-section">
-    <div class="search-bar">
-      <input type="text" placeholder="Search for medicine...">
-      <button>Search</button>
-    </div>
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('show');
+  }
 
-    <div id="search-results"></div>
+  window.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('user-dropdown');
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
+      dropdown.style.display = 'none';
+      navLinks.classList.remove('show');
+    }
+  });
 
-    <div class="main-container">
-      <h2>Welcome, <span style="color: #2b2b2b;">[Lapuz]</span>!</h2>
-      <p>Here’s a quick summary of your account:</p>
-      <ul>
-        <li>📌 <strong>Next medicine:</strong> NOT SET</li>
-        <li>⏰ <strong>Reminders set:</strong> NOT SET</li>
-        <li>📅 <strong>Total schedules this week:</strong> NOT SET</li>
-      </ul>
+  document.querySelector('.hamburger').addEventListener('click', () => {
+    toggleUserDetails();
+    toggleMenu();
+  });
 
-      <div class="dashboard-grid">
-        <a class="dashboard-btn" href="notification.html">Notification</a>
-        <a class="dashboard-btn" href="saved.html">Saved</a>
-        <a class="dashboard-btn" href="setreminders.html">Add Reminders</a>
-        <a class="dashboard-btn" href="reminders.html">See Reminders</a>
-        <a class="dashboard-btn" href="history.html">History</a>
-      </div>
-    </div>
-  </section>
+  document.getElementById("go-profile").addEventListener("click", function () {
+    window.location.href = "personal-details.html";
+  });
 
-  <footer>
-    In-depth Knowledge, Medication Made Simple
-  </footer>
+  document.getElementById("logout-btn").addEventListener("click", function () {
+    alert("You have been logged out.");
+    window.location.href = "index.html";
+  });
 
-  <script>
-    const medicines = [
-      "Paracetamol",
-      "Ibuprofen",
-      "Amoxicillin",
-      "Cetirizine",
-      "Metformin",
-      "Loperamide",
-      "Omeprazole",
-      "Aspirin",
-      "Losartan",
-      "Simvastatin"
-    ];
+  const medicines = [
+    {name: "Paracetamol", desc: "Pain reliever and fever reducer", keywords: ["fever", "pain", "headache"]},
+    {name: "Ibuprofen", desc: "Anti-inflammatory pain reliever", keywords: ["pain", "inflammation", "fever"]},
+    {name: "Amoxicillin", desc: "Antibiotic for bacterial infections", keywords: ["infection", "bacteria"]},
+    {name: "Cetirizine", desc: "Allergy relief", keywords: ["allergy", "sneeze", "rash"]},
+    {name: "Metformin", desc: "Blood sugar control for diabetes", keywords: ["diabetes", "blood sugar", "highblood"]},
+    {name: "Loperamide", desc: "Treats diarrhea", keywords: ["diarrhea", "stomach"]},
+    {name: "Aspirin", desc: "Pain relief and blood thinner", keywords: ["pain", "blood clot", "fever"]},
+    {name: "Omeprazole", desc: "Reduces stomach acid", keywords: ["acid", "stomach", "heartburn"]},
+    {name: "Salbutamol", desc: "Relieves asthma symptoms", keywords: ["asthma", "breath", "wheezing"]},
+    {name: "Prednisone", desc: "Steroid to reduce inflammation", keywords: ["inflammation", "allergy", "asthma"]},
+    {name: "Simvastatin", desc: "Lowers cholesterol", keywords: ["cholesterol", "heart"]},
+    {name: "Levothyroxine", desc: "Thyroid hormone replacement", keywords: ["thyroid", "hormone"]},
+    {name: "Sertraline", desc: "Antidepressant", keywords: ["depression", "anxiety"]},
+    {name: "Azithromycin", desc: "Antibiotic for respiratory infections", keywords: ["infection", "respiratory"]},
+    {name: "Doxycycline", desc: "Antibiotic for infections", keywords: ["infection", "bacteria"]},
+    {name: "Diphenhydramine", desc: "Allergy and sleep aid", keywords: ["allergy", "sleep"]},
+    {name: "Warfarin", desc: "Blood thinner", keywords: ["blood clot", "stroke"]},
+    {name: "Hydrochlorothiazide", desc: "Diuretic for blood pressure", keywords: ["blood pressure", "hypertension"]},
+    {name: "Furosemide", desc: "Diuretic to reduce fluid buildup", keywords: ["fluid", "swelling"]},
+    {name: "Clindamycin", desc: "Antibiotic for serious infections", keywords: ["infection", "bacteria"]},
+  ];
 
-    function toggleUserDetails() {
-      const dropdown = document.getElementById('user-dropdown');
-      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+  const searchInput = document.getElementById("search-input");
+  const dropdown = document.getElementById("medicine-dropdown");
+
+  searchInput.addEventListener("input", function () {
+    const value = this.value.trim().toLowerCase();
+    dropdown.innerHTML = "";
+
+    if (!value) {
+      dropdown.style.display = "none";
+      return;
     }
 
-    window.addEventListener('click', function (e) {
-      const dropdown = document.getElementById('user-dropdown');
-      const hamburger = document.querySelector('.hamburger');
-      if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
-        dropdown.style.display = 'none';
-      }
+    // Filter medicines by name, desc, or keywords
+    const results = medicines.filter(med =>
+      med.name.toLowerCase().includes(value) ||
+      med.desc.toLowerCase().includes(value) ||
+      med.keywords.some(k => k.includes(value))
+    );
+
+    if (results.length === 0) {
+      dropdown.style.display = "none";
+      return;
+    }
+
+    results.slice(0, 10).forEach(med => {
+      const div = document.createElement("div");
+      div.classList.add("medicine-item");
+      div.innerHTML = `
+        <div class="medicine-name">${med.name}</div>
+        <div class="medicine-desc">${med.desc}</div>
+      `;
+      div.addEventListener("click", () => {
+        // Save selected medicine as an object stringified
+        const medObj = { name: med.name, purpose: med.desc };
+        localStorage.setItem("selectedMedicine", JSON.stringify(medObj));
+        window.location.href = "setreminders.html";
+      });
+      dropdown.appendChild(div);
     });
 
-    document.querySelector('.search-bar button').addEventListener('click', () => {
-      const query = document.querySelector('.search-bar input').value.toLowerCase();
-      const resultsDiv = document.getElementById('search-results');
-      const matched = medicines.filter(med => med.toLowerCase().includes(query));
+    dropdown.style.display = "block";
+  });
 
-      if (query === "") {
-        resultsDiv.innerHTML = '<p>Please enter a search term.</p>';
-      } else if (matched.length > 0) {
-        resultsDiv.innerHTML = `<strong>Results:</strong><ul>${matched.map(m => `<li>${m}</li>`).join('')}</ul>`;
-      } else {
-        resultsDiv.innerHTML = `<p>No medicine found for "<strong>${query}</strong>".</p>`;
-      }
-    });
+  document.addEventListener("click", (event) => {
+    if (!document.querySelector(".search-bar").contains(event.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+</script>
 
-    // Dropdown navigation functionality
-    document.getElementById("go-profile").addEventListener("click", function () {
-      window.location.href = "profile.html"; // Make sure profile.html exists
-    });
 
-    document.getElementById("logout-btn").addEventListener("click", function () {
-      alert("You have been logged out.");
-      window.location.href = "log-in.html"; // Redirect to your homepage or login
-    });
-  </script>
 
-  <script src="script.js"></script>
 </body>
 </html>

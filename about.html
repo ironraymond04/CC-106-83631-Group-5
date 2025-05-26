@@ -15,7 +15,7 @@
 
     html, body {
       height: 100%;
-      overflow: hidden; /* Prevent scroll */
+      overflow: hidden;
     }
 
     body {
@@ -48,9 +48,11 @@
     }
 
     .logo-text {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
       font-size: 1.5rem;
-      font-weight: bold;
-      color: black;
+      color: #3a7073;
     }
 
     .nav-links {
@@ -82,30 +84,58 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: calc(100vh - 80px); /* Adjust for fixed navbar */
+      height: calc(100vh - 80px);
       padding: 0 5%;
       margin-top: 80px;
-      background-image: url('back.png'); 
+      background-image: url('back.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       position: relative;
     }
 
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(120deg, rgba(166, 240, 211, 0.3), rgba(58, 112, 115, 0.3));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .main-container {
+      display: flex;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.25);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 20%;
+      min-width: 575px;
+      z-index: 2;
+      animation: fadeInUp 1s ease-out;
+    }
+
     .about-card {
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.8);
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
       max-width: 600px;
       width: 100%;
       text-align: left;
-      z-index: 10; /* Ensure box is above the image */
+      z-index: 10;
     }
 
     .about-card h2 {
-      margin-bottom: 1rem;
-      color: #333;
+      color: #3a7073;
+      margin-bottom: 0.5rem;
+      font-size: 50px;
+      text-align: center;
     }
 
     .about-card p {
@@ -120,19 +150,34 @@
       justify-content: center;
       align-items: center;
       max-width: 500px;
-      z-index: 5; /* Image on top of background */
+      z-index: 5;
     }
 
     .hero-img img {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10rem 5%;
-      background-size: contain;
-      background-position: right center;
-      background-repeat: no-repeat;
-      height: 120vh;
-      margin-left: 50%;
+      height: 80vh;
+      width: auto;
+      object-fit: contain;
+      animation: floatImg 4s ease-in-out infinite;
+    }
+
+    @keyframes floatImg {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     footer {
@@ -165,7 +210,6 @@
       }
     }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
   <header class="navbar">
@@ -174,23 +218,24 @@
       <div class="logo-text">KnowMed</div>
     </div>
     <nav class="nav-links">
-      <a href="frontpage.html">Home</a>
-      <a href="about.html" class="contact-btn">About →</a>
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html" class="contact-btn"> About →</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <section class="hero-section">
-    <div class="about-card">
-      <h2>About KnowMed</h2>
-      <p>
-        KnowMed is your personal medication manager. It’s built to help users monitor their medicine intake, receive reminders,
-        and stay on top of their health routines. Whether you're tracking a prescription or managing a family member’s dosage,
-        KnowMed ensures your wellness is just a click away.
-      </p>
+    <div class="main-container">
+      <div class="about-card">
+        <h2>ABOUT US</h2>
+        <p>
+                  KnowMed is your personal medication manager. It’s built to help users monitor their medicine intake, receive reminders,
+          and stay on top of their health routines. Whether you're tracking a prescription or managing a family member’s dosage,
+          KnowMed ensures your wellness is just a click away.
+        </p>
+      </div>
     </div>
 
-    <!-- Doctor Image -->
     <div class="hero-img">
       <img src="doc.png" alt="Doctor Image">
     </div>
@@ -199,7 +244,5 @@
   <footer>
     In-depth Knowledge, Medication Made Simple
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
