@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       alert("Login successful!");
-      window.location.href = "main.html";
+      window.location.href = "dashboard.html";
     });
   }
 });
