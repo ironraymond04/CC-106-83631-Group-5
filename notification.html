@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Notification</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url("back.png") no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    header.navbar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background-color: #0082ca;
+      padding: 2rem 2rem;
+      position: relative;
+      z-index: 1000;
+      gap: 1rem;
+    }
+
+    .center-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      pointer-events: none;
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 3rem 2rem;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(200, 200, 200, 0.3);
+      animation: fadeIn 0.7s ease-out;
+    }
+
+    .main-container h2 {
+      font-size: 2rem;
+      color: #3a7073;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .notification {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .notification.unread {
+      background-color: #fff5e6;
+      font-weight: 600;
+    }
+
+    .notification.read {
+      background-color: #f1f1f1;
+      color: #666;
+      font-weight: normal;
+    }
+
+    .notif-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .notif-time {
+      text-align: right;
+      font-size: 0.9rem;
+      color: gray;
+    }
+
+    .delete-btn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease;
+    }
+
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .dashboard-btn-container {
+      width: 100%;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+
+    .dashboard-btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      background-color: #0082ca;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 130, 202, 0.4);
+      transition: background-color 0.3s ease;
+    }
+
+    .dashboard-btn:hover {
+      background-color: #006bb3;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      color: #888;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 1.5rem;
+      }
+
+      .notification {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .notif-time {
+        margin-top: 0.5rem;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="center-title">Notification</div>
+</header>
+
+<main>
+  <div class="main-container">
+    <div class="dashboard-btn-container">
+      <button class="dashboard-btn" onclick="window.location.href='dashboard.html'">Back</button>
+    </div>
+
+    <h2>🔔 Medicine Notification</h2>
+  </div>
+</main>
+
+<footer>
+  In-depth Knowledge, Medication Made Simple
+</footer>
+<script src="remindersAlarm.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const { createClient } = supabase;
+  const supabaseUrl = "https://ggesdpocbvcclkkeatjt.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnZXNkcG9jYnZjY2xra2VhdGp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgyNjMwOTYsImV4cCI6MjA2MzgzOTA5Nn0.JIVNhLEwkVQAyQE5sCEIYRmkhj21I1a-TvWArG7Mwr8";
+  const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+  function formatDate(date) {
+    const d = new Date(date);
+    return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  }
+  function formatTime(date) {
+    const d = new Date(date);
+    return d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' });
+  }
+
+  // Render notifications from Supabase
+  async function renderNotifications() {
+    const { data: notifications, error } = await supabaseClient
+      .from('notifications')
+      .select('*')
+      .order('time', { ascending: false });
+
+    const container = document.querySelector('.main-container');
+    // Remove old dynamic notifications
+    document.querySelectorAll('.notification.dynamic').forEach(el => el.remove());
+
+    if (error || !notifications) return;
+
+    notifications.forEach(notif => {
+      const div = document.createElement('div');
+      div.className = `notification ${notif.read ? 'read' : 'unread'} dynamic`;
+      div.innerHTML = `
+        <div class="notif-left">
+          <input type="checkbox" ${notif.read ? 'checked' : ''} onchange="toggleReadSupabase(this, '${notif.id}')">
+          <span>${notif.message}</span>
+        </div>
+        <div class="notif-time">
+          <div>${formatDate(notif.time)}</div>
+          <div>${formatTime(notif.time)}</div>
+        </div>
+        <button class="delete-btn">Delete</button>
+      `;
+      container.appendChild(div);
+      div.querySelector('.delete-btn').onclick = async () => {
+        await supabaseClient.from('notifications').delete().eq('id', notif.id);
+        renderNotifications();
+      };
+    });
+  }
+
+  // Toggle read/unread in Supabase
+  window.toggleReadSupabase = async function(checkbox, id) {
+    await supabaseClient.from('notifications').update({ read: checkbox.checked }).eq('id', id);
+    renderNotifications();
+  };
+
+  // Check for alarms coming up in 5 minutes and save notification to Supabase
+  async function checkUpcomingAlarms() {
+    // Fetch reminders from Supabase
+    const { data: reminders } = await supabaseClient
+      .from('reminders')
+      .select('*');
+
+    if (!reminders) return;
+
+    const now = new Date();
+    for (const reminder of reminders) {
+      const reminderTime = new Date(reminder.time);
+      const diffMs = reminderTime - now;
+      const diffMinutes = diffMs / (1000 * 60);
+
+      // Check if already notified
+      const { data: existing } = await supabaseClient
+        .from('notifications')
+        .select('id')
+        .eq('reminder_id', reminder.id)
+        .eq('message', 'Your alarm is coming Up!');
+
+      // If 30 seconds before alarm, and not already notified
+      if (diffMs > 25000 && diffMs <= 35000 && (!existing || existing.length === 0)) {
+        // Save notification to Supabase
+        await supabaseClient.from('notifications').insert([{
+          reminder_id: reminder.id,
+          message: `Your alarm is coming Up! Scheduled at: ${formatDate(reminder.time)} ${formatTime(reminder.time)}`,
+          time: reminder.time,
+          read: false
+        }]);
+        // Optionally show browser notification
+        if (Notification.permission === 'granted') {
+          new Notification('Your alarm is coming Up!', {
+            body: reminder.name ? `For: ${reminder.name}` : '',
+            icon: 'alarm-icon.png'
+          });
+        }
+        renderNotifications();
+      }
+    }
+  }
+
+  // Request notification permission
+  if (typeof Notification !== 'undefined' && Notification.permission !== 'granted') {
+    Notification.requestPermission();
+  }
+
+  // Initial render
+  renderNotifications();
+
+  // Check every 30 seconds
+  checkUpcomingAlarms();
+  setInterval(checkUpcomingAlarms, 1000);
+  setInterval(renderNotifications, 30000); // Refresh notification list
+
+  // Add this to your main JS file (not just notification.html)
+  // Example: Fetch reminders from Supabase
+  async function fetchRemindersFromSupabase() {
+    const { data: reminders, error } = await supabaseClient
+      .from('reminders')
+      .select('*');
+    if (error) {
+      console.error('Failed to fetch reminders:', error.message);
+      return [];
+    }
+    return reminders;
+  }
+
+  // Example: Add a new reminder to Supabase
+  async function addReminderToSupabase(reminder) {
+    const { data, error } = await supabaseClient
+      .from('reminders')
+      .insert([reminder]);
+    if (error) {
+      console.error('Failed to add reminder:', error.message);
+    }
+    return data;
+  }
+</script>
+
+</body>
+</html>

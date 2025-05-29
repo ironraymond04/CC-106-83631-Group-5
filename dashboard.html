@@ -1,0 +1,585 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KnowMed Dashboard</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(to right, #f5f9fc, #dbeef3);
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    header.navbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 2rem;
+      color: black;
+      position: relative;
+      z-index: 1000;
+    }
+
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hamburger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 30px;
+      height: 20px;
+    }
+    .logo-text {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      color: #3a7073;
+    }
+
+
+    .hamburger div {
+      width: 100%;
+      height: 4px;
+      background-color: #000;
+      transition: 0.3s ease;
+    }
+
+    .logo-img {
+      height: 36px;
+      width: auto;
+    }
+
+    .center-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: black;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: blue;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 70px;
+      left: 2rem;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: none;
+      flex-direction: column;
+      min-width: 180px;
+      z-index: 10;
+    }
+
+    .dropdown-menu a {
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #67cccf;
+    }
+
+    .hero-section {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0 5%;
+      background-image: url('back.png');
+      background-position: right center, center center;
+      background-size: contain, cover;
+      flex-grow: 1;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 900px;
+      padding: 3rem 2rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(200, 200, 200, 0.3);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .main-container:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-container h2 {
+      color: #3a7073;
+      margin-bottom: 0.5rem;
+      font-size: 50px;
+    }
+
+    .main-container ul {
+      list-style: none;
+      padding: 0;
+      line-height: 1.8;
+      text-align: left;
+      max-width: 400px;
+      margin: 1rem auto 0 auto;
+    }
+
+.dashboard-grid {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: nowrap;
+}
+
+
+
+    .dashboard-btn {
+      background-color: #f1fdfc;
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+      color: #2b2b2b;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s, background 0.3s;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+      display: block;
+      width: 100%;
+    }
+
+    .dashboard-btn:hover {
+      transform: translateY(-5px);
+      background-color: #a6f0d3;
+    }
+    .search-bar {
+      margin: 2rem 0 1rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+      max-width: 600px;
+      background: white;
+      padding: 0.6rem 1rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+      transition: box-shadow 0.3s ease;
+      position: relative; /* for dropdown positioning */
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 0.8rem 1rem;
+      border: none;
+      font-size: 1rem;
+      border-radius: 8px;
+      outline: none;
+      background-color: #f5f8fa;
+    }
+
+    .search-bar button {
+      padding: 0.75rem 1.2rem;
+      border: none;
+      background-color: #3a7073;
+      color: white;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .search-bar button:hover {
+      background-color: #2b595b;
+    }
+
+    /* NEW dropdown styling for medicine search */
+    #medicine-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #ddd;
+      border-top: none;
+      max-height: 250px;
+      overflow-y: auto;
+      font-size: 0.85rem;
+      border-bottom-left-radius: 12px;
+      border-bottom-right-radius: 12px;
+      box-shadow: 0 8px 12px rgba(0,0,0,0.1);
+      z-index: 1001;
+      display: none;
+    }
+
+    #medicine-dropdown .medicine-item {
+      padding: 0.6rem 1rem;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+
+    #medicine-dropdown .medicine-item:last-child {
+      border-bottom: none;
+    }
+
+    #medicine-dropdown .medicine-item:hover {
+      background-color: #a6f0d3;
+      color: #000;
+    }
+
+    #medicine-dropdown .medicine-name {
+      font-weight: 600;
+      color: #3a7073;
+    }
+
+    #medicine-dropdown .medicine-desc {
+      font-weight: 400;
+      color: #555;
+      font-size: 0.75rem;
+      margin-top: 3px;
+    }
+
+    #search-results {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #444;
+      text-align: left;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: white;
+      color: #888;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+    .contact-btn {
+      background-color: #a6f0d3;
+      padding: 0.4rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 2rem;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        padding: 1rem;
+        z-index: 10;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+.hero-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem 5%;
+  background-image: url('back.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-grow: 1;
+  flex-direction: column;
+  text-align: center;
+}
+
+
+      .main-container {
+        margin-bottom: 2rem;
+        padding: 2rem;
+      }
+
+      .center-title {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="left-section">
+    <div class="hamburger" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <img src="logo.png" alt="KnowMed Logo" class="logo-img">
+    <div class="logo-text">KnowMed</div>
+  </div>
+
+  <div class="center-title">Dashboard</div>
+
+  <div id="user-dropdown" class="dropdown-menu">
+    <a href="personal-details.html" id="go-profile">Profile</a>
+    <a href="term-service.html">Terms of Service</a>
+    <a href="frontpage.html" id="logout-btn">Logout</a>
+  </div>
+
+  <nav class="nav-links" id="navLinks">
+    <a href="dashboard.html">Home</a>
+    <a href="dashboardabout.html">About</a>
+    <a href="dashboardContact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero-section">
+  <div class="search-bar">
+    <input type="text" placeholder="Search for medicine..." id="search-input" autocomplete="off" />
+    <button id="search-btn">Search</button>
+
+    <!-- Medicine dropdown -->
+    <div id="medicine-dropdown"></div>
+  </div>
+
+  <div id="search-results"></div>
+
+  <div class="main-container">
+    <h2>Welcome to KnowMed!</h2>
+    <p>Here’s a quick summary of your account:</p>
+    <ul>
+  <li>📌 <strong>Medicine:</strong> <span id="med-name">NOT SET</span></li>
+  <li>⏰ <strong>Reminders set:</strong> <span id="med-datetime">NOT SET</span></li>
+  <li>📅 <strong>Total schedules :</strong> <span id="schedule-count">NOT SET</span></li>
+</ul>
+
+    <div class="dashboard-grid">
+      <a class="dashboard-btn" href="notification.html">🔔 Notification</a>
+      <a class="dashboard-btn" href="setreminders.html">⏰ Reminders</a>
+      <a class="dashboard-btn" href="history.html">📜 History</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  In-depth Knowledge, Medication Made Simple
+</footer> 
+
+<script src="remindersAlarm.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const { createClient } = supabase;
+  const supabaseUrl = "https://ggesdpocbvcclkkeatjt.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnZXNkcG9jYnZjY2xra2VhdGp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgyNjMwOTYsImV4cCI6MjA2MzgzOTA5Nn0.JIVNhLEwkVQAyQE5sCEIYRmkhj21I1a-TvWArG7Mwr8";
+  const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+  window.addEventListener('DOMContentLoaded', async () => {
+    const medNameSpan = document.getElementById('med-name');
+    const medDatetimeSpan = document.getElementById('med-datetime');
+    const scheduleCountSpan = document.getElementById('schedule-count');
+
+    // Fetch reminders from Supabase, latest first
+    const { data: reminders, error } = await supabaseClient
+      .from('reminders')
+      .select('*')
+      .order('time', { ascending: false });
+
+    if (error) {
+      medNameSpan.textContent = 'ERROR';
+      medDatetimeSpan.textContent = 'ERROR';
+      scheduleCountSpan.textContent = 'ERROR';
+      return;
+    }
+
+    if (!reminders || reminders.length === 0) {
+      medNameSpan.textContent = 'NOT SET';
+      medDatetimeSpan.textContent = 'NOT SET';
+      scheduleCountSpan.textContent = '0';
+      return;
+    }
+
+    // Show the most recent reminder's name and time
+    medNameSpan.textContent = reminders[0].name || 'NOT SET';
+    medDatetimeSpan.textContent = reminders[0].time
+      ? new Date(reminders[0].time).toLocaleString()
+      : 'NOT SET';
+
+    // Show the total count
+    scheduleCountSpan.textContent = reminders.length;
+  });
+</script>
+<script>
+  function toggleUserDetails() {
+    const dropdown = document.getElementById('user-dropdown');
+    dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    navLinks.classList.toggle('show');
+  }
+
+  window.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('user-dropdown');
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.getElementById('navLinks');
+    if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
+      dropdown.style.display = 'none';
+      navLinks.classList.remove('show');
+    }
+  });
+
+  document.querySelector('.hamburger').addEventListener('click', () => {
+    toggleUserDetails();
+    toggleMenu();
+  });
+
+  document.getElementById("go-profile").addEventListener("click", function () {
+    window.location.href = "personal-details.html";
+  });
+
+  document.getElementById("logout-btn").addEventListener("click", function () {
+    alert("You have been logged out.");
+    window.location.href = "frontpage.html";
+  });
+
+ const medicines = [
+  {name: "Paracetamol", desc: "Pain reliever and fever reducer", keywords: ["fever", "pain", "headache"], dosage: "500mg every 4-6 hours as needed (max 4g/day)"},
+  {name: "Ibuprofen", desc: "Anti-inflammatory pain reliever", keywords: ["pain", "inflammation", "fever"], dosage: "200-400mg every 4-6 hours as needed (max 1200mg/day)"},
+  {name: "Amoxicillin", desc: "Antibiotic for bacterial infections", keywords: ["infection", "bacteria"], dosage: "500mg every 8 hours for 7-10 days"},
+  {name: "Cetirizine", desc: "Allergy relief", keywords: ["allergy", "sneeze", "rash"], dosage: "10mg once daily"},
+  {name: "Metformin", desc: "Blood sugar control for diabetes", keywords: ["diabetes", "blood sugar", "highblood"], dosage: "500mg twice daily with meals"},
+  {name: "Loperamide", desc: "Treats diarrhea", keywords: ["diarrhea", "stomach"], dosage: "4mg initially, then 2mg after each loose stool (max 8mg/day)"},
+  {name: "Aspirin", desc: "Pain relief and blood thinner", keywords: ["pain", "blood clot", "fever"], dosage: "325-650mg every 4-6 hours (pain); 81-325mg once daily (heart health)"},
+  {name: "Omeprazole", desc: "Reduces stomach acid", keywords: ["acid", "stomach", "heartburn"], dosage: "20mg once daily before a meal"},
+  {name: "Salbutamol", desc: "Relieves asthma symptoms", keywords: ["asthma", "breath", "wheezing"], dosage: "1-2 puffs every 4-6 hours as needed"},
+  {name: "Prednisone", desc: "Steroid to reduce inflammation", keywords: ["inflammation", "allergy", "asthma"], dosage: "5-60mg once daily depending on condition"},
+  {name: "Simvastatin", desc: "Lowers cholesterol", keywords: ["cholesterol", "heart"], dosage: "10-40mg once daily in the evening"},
+  {name: "Levothyroxine", desc: "Thyroid hormone replacement", keywords: ["thyroid", "hormone"], dosage: "25-100mcg once daily on an empty stomach"},
+  {name: "Sertraline", desc: "Antidepressant", keywords: ["depression", "anxiety"], dosage: "50mg once daily (adjustable up to 200mg)"},
+  {name: "Azithromycin", desc: "Antibiotic for respiratory infections", keywords: ["infection", "respiratory"], dosage: "500mg on day 1, then 250mg once daily on days 2-5"},
+  {name: "Doxycycline", desc: "Antibiotic for infections", keywords: ["infection", "bacteria"], dosage: "100mg every 12 hours for 7-14 days"},
+  {name: "Diphenhydramine", desc: "Allergy and sleep aid", keywords: ["allergy", "sleep"], dosage: "25-50mg every 4-6 hours (max 300mg/day)"},
+  {name: "Warfarin", desc: "Blood thinner", keywords: ["blood clot", "stroke"], dosage: "2-10mg once daily (adjusted by INR)"},
+  {name: "Hydrochlorothiazide", desc: "Diuretic for blood pressure", keywords: ["blood pressure", "hypertension"], dosage: "12.5-25mg once daily"},
+  {name: "Furosemide", desc: "Diuretic to reduce fluid buildup", keywords: ["fluid", "swelling"], dosage: "20-80mg once or twice daily"},
+  {name: "Clindamycin", desc: "Antibiotic for serious infections", keywords: ["infection", "bacteria"], dosage: "300-450mg every 6-8 hours"},
+  {name: "Ranitidine", desc: "Reduces stomach acid", keywords: ["acid", "indigestion", "heartburn"], dosage: "150mg twice daily or 300mg at bedtime"},
+  {name: "Losartan", desc: "Lowers blood pressure", keywords: ["blood pressure", "hypertension"], dosage: "50mg once daily (adjustable up to 100mg)"},
+  {name: "Atorvastatin", desc: "Lowers cholesterol", keywords: ["cholesterol", "heart disease"], dosage: "10-80mg once daily"},
+  {name: "Zolpidem", desc: "Treats insomnia", keywords: ["sleep", "insomnia"], dosage: "5-10mg at bedtime"},
+  {name: "Gabapentin", desc: "Treats nerve pain", keywords: ["nerve", "pain", "seizure"], dosage: "300mg once daily, increased gradually to 900-1800mg/day"},
+  {name: "Alprazolam", desc: "Anti-anxiety medication", keywords: ["anxiety", "panic", "stress"], dosage: "0.25-0.5mg three times daily (max 4mg/day)"},
+  {name: "Lisinopril", desc: "Treats high blood pressure", keywords: ["blood pressure", "heart", "hypertension"], dosage: "10-40mg once daily"},
+  {name: "Pantoprazole", desc: "Reduces stomach acid", keywords: ["acid", "GERD", "ulcer"], dosage: "40mg once daily"},
+  {name: "Insulin", desc: "Controls blood sugar levels", keywords: ["diabetes", "blood sugar"], dosage: "Individualized based on blood glucose monitoring"},
+  {name: "Fluoxetine", desc: "Antidepressant", keywords: ["depression", "anxiety", "mental health"], dosage: "20mg once daily (adjustable up to 80mg/day)"},
+];
+
+
+  const searchInput = document.getElementById("search-input");
+  const dropdown = document.getElementById("medicine-dropdown");
+
+  searchInput.addEventListener("input", function () {
+    const value = this.value.trim().toLowerCase();
+    dropdown.innerHTML = "";
+
+    if (!value) {
+      dropdown.style.display = "none";
+      return;
+    }
+
+    // Filter medicines by name, desc, or keywords
+    const results = medicines.filter(med =>
+      med.name.toLowerCase().includes(value) ||
+      med.desc.toLowerCase().includes(value) ||
+      med.keywords.some(k => k.includes(value))
+    );
+
+    if (results.length === 0) {
+      dropdown.style.display = "none";
+      return;
+    }
+
+    results.slice(0, 10).forEach(med => {
+      const div = document.createElement("div");
+      div.classList.add("medicine-item");
+      div.innerHTML = `
+        <div class="medicine-name">${med.name}</div>
+        <div class="medicine-desc">${med.desc}</div>
+      `;
+      div.addEventListener("click", () => {
+        // Save selected medicine as an object stringified
+        const medObj = { name: med.name, purpose: med.desc };
+        localStorage.setItem("selectedMedicine", JSON.stringify(medObj));
+        window.location.href = "setreminders.html";
+      });
+      dropdown.appendChild(div);
+    });
+
+    dropdown.style.display = "block";
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!document.querySelector(".search-bar").contains(event.target)) {
+      dropdown.style.display = "none";
+    }
+  });
+</script>
+</body>
+</html>

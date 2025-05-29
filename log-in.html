@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KnowMed - log-in</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <link rel="stylesheet" href="style.css">
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="KnowMed Logo" />
+      <span>KnowMed</span>
+    </div>
+    <nav class="nav-links">
+      <a href="frontpage.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="contact-btn">Contact →</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="main-container">
+      <form class="form-container" id="loginForm">
+        <label>Email</label>
+        <input type="text" placeholder="Email" id="login-email" required />
+        <label>Password</label>
+        <input type="password" placeholder="Password" id="login-password" required />
+        <button type="submit" class="login-btn">Log in</button>
+      </form>
+    </div>
+  </section>
+<script src="remindersAlarm.js"></script>
+
+
+  <script>
+    const { createClient } = supabase;
+    const supabaseUrl = "https://ggesdpocbvcclkkeatjt.supabase.co";
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnZXNkcG9jYnZjY2xra2VhdGp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgyNjMwOTYsImV4cCI6MjA2MzgzOTA5Nn0.JIVNhLEwkVQAyQE5sCEIYRmkhj21I1a-TvWArG7Mwr8"; 
+    const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+    const form = document.getElementById("loginForm");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const email = document.getElementById("login-email").value.trim();
+      const password = document.getElementById("login-password").value;
+
+      if (!email || !password) {
+        alert("Please enter both email and password.");
+        return;
+      }
+
+      // Check if user exists with that email and password
+      const { data, error } = await supabaseClient
+        .from("users")
+        .select("*")
+        .eq("email", email)
+        .eq("password", password)
+        .single();
+
+      if (error || !data) {
+        alert("Login failed: Invalid email or password.");
+        console.error("Login error:", error);
+        return;
+      }
+
+      // Store user data in localStorage
+      localStorage.setItem("loggedInUser", JSON.stringify(data));
+
+      alert("Login successful!");
+      window.location.href = "personal-details.html";
+    });
+  </script>
+</body>
+</html>

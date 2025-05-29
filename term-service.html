@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terms of Service - KnowMed</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-image: url('back.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    header.navbar {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 2rem;
+      color: black;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .hamburger {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 30px;
+      height: 20px;
+    }
+
+    .hamburger div {
+      width: 100%;
+      height: 5px;
+      background-color: #000;
+    }
+
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      color: #3a7073;
+    }
+
+    .center-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: black;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: blue;
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 70px;
+      left: 2rem;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: none;
+      flex-direction: column;
+      min-width: 180px;
+      z-index: 10;
+    }
+
+    .dropdown-menu a {
+      padding: 0.75rem 1rem;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Main container takes available space between header and footer */
+    .main-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      margin-top: 200px;    /* height of fixed header */
+      margin-bottom: 50px; /* height of fixed footer */
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 1, 0, 0.5);
+      width: auto;
+      min-width: 320px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .terms-container {
+      padding: 2rem;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      max-width: 100%;
+    }
+
+    .terms-container h2 {
+    color: #3a7073;
+      margin-bottom: 0.5rem;
+      font-size: 50px;
+      text-align: center;
+    }
+    .terms-container p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .terms-container ul {
+      margin-left: 2rem;
+    }
+
+    .terms-container ul li {
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: white;
+      color: #888;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .center-title {
+        width: 100%;
+        text-align: center;
+        margin-top: 0.5rem;
+      }
+      .main-container {
+        min-width: auto;
+        width: 90%;
+        margin-top: 100px;
+        margin-bottom: 70px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="left-section">
+      <div class="hamburger" onclick="toggleDropdown()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <img src="logo.png" alt="KnowMed Logo" class="logo-img">
+      <span class="logo-text">KnowMed</span>
+    </div>
+
+    <div class="center-title">Terms of Service</div>
+
+    <nav class="nav-links">
+      <a href="dashboard.html">Home</a>
+      <a href="dashboardabout.html">About</a>
+      <a href="dashboardContact.html">Contact</a>
+    </nav>
+
+    <div id="user-dropdown" class="dropdown-menu">
+      <a href="personal-details.html">Profile</a>
+      <a href="term-service.html">Terms of Service</a>
+      <a href="frontpage.html">Logout</a>
+    </div>
+  </header>
+
+  <div class="main-container">
+    <div class="terms-container">
+      <h2>TERMS OF SERVICES</h2>
+      <p>Welcome to KnowMed! By using our services, you agree to the following terms:</p>
+
+      <h3>1. Acceptance of Terms</h3>
+      <p>By accessing or using our platform, you agree to comply with these Terms of Service and any other policies or guidelines we may establish.</p>
+
+      <h3>2. User Responsibilities</h3>
+      <ul>
+        <li>You must provide accurate information when using our services.</li>
+        <li>You're responsible for maintaining the confidentiality of your account.</li>
+        <li>You agree not to misuse our platform for unlawful activities.</li>
+      </ul>
+
+      <h3>3. Privacy Policy</h3>
+      <p>Your privacy is important to us. Please review our <a href="#">Privacy Policy</a> to understand how we collect, use, and protect your information.</p>
+
+      <h3>4. Modifications</h3>
+      <p>We reserve the right to modify these terms at any time. You'll be notified of any major changes.</p>
+
+      <h3>5. Termination</h3>
+      <p>We may suspend or terminate your account for any violations of these terms.</p>
+    </div>
+  </div>
+
+  <footer>
+    In-depth Knowledge, Medication Made Simple
+  </footer>
+<script src="remindersAlarm.js"></script>
+
+  <script>
+    function toggleDropdown() {
+      const dropdown = document.getElementById('user-dropdown');
+      dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    window.addEventListener('click', function (e) {
+      const dropdown = document.getElementById('user-dropdown');
+      const hamburger = document.querySelector('.hamburger');
+      if (!dropdown.contains(e.target) && !hamburger.contains(e.target)) {
+        dropdown.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

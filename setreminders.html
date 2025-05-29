@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>REMINDERS</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url("back.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    header.navbar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background-color: #0082ca;
+      padding: 2rem 2rem;
+      position: relative;
+      z-index: 1000;
+      gap: 1rem;
+    }
+
+    .center-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      pointer-events: none;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem;
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 1000px;
+      padding: 3rem 2rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      margin-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(200, 200, 200, 0.3);
+      animation: fadeIn 0.7s ease-out;
+    }
+
+    .main-container:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-section, .list-section {
+      flex: 1 1 400px;
+      background: #ffffffdd;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #3a7073;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="datetime-local"],
+    input[type="search"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: vertical;
+    }
+
+    .btn {
+      background-color: #247dff;
+      color: white;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #1c63d2;
+    }
+
+    .reminders-list {
+      list-style: none;
+      padding: 0;
+      margin-top: 20px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .reminders-list li {
+      background-color: #7f8d95;
+      color: white;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .reminder-text {
+      flex-grow: 1;
+      text-align: left;
+      font-size: 15px;
+      line-height: 1.2;
+    }
+
+    .reminders-list input[type="checkbox"] {
+      accent-color: #5c3e91;
+    }
+
+    .reminders-list .delete-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: #f9f9f9;
+      cursor: pointer;
+    }
+
+    .reminders-list .delete-btn:hover {
+      color: #f44336;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      color: #888;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+
+     .dashboard-btn-container {
+        width: 100%;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .dashboard-btn {
+        padding: 0.8rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 8px;
+        border: none;
+        background-color: #0082ca;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 4px 10px rgba(0, 130, 202, 0.4);
+        transition: background-color 0.3s ease;
+      }
+
+      .dashboard-btn:hover {
+        background-color: #006bb3;
+      }.dashboard-btn-container {
+        margin-bottom: 1rem;
+      }
+
+      .dashboard-btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: none;
+        background-color: #0082ca;
+        color: white;
+        cursor: pointer;
+        box-shadow: 0 2px 6px rgba(0, 130, 202, 0.4);
+        transition: background-color 0.3s ease;
+      }
+
+      .dashboard-btn:hover {
+        background-color: #006bb3;
+      }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header.navbar {
+        padding: 1rem 1.5rem;
+      }
+      .center-title {
+        font-size: 1.2rem;
+      }
+      .main-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="center-title">Reminders</div>
+</header>
+
+<main>
+  <div class="main-container">
+    <div class="dashboard-btn-container" style="text-align: left; margin-bottom: -1rem;  margin-top: -1px;">
+        <button id="backToDashboardBtn" class="dashboard-btn">Back</button>
+      </div>
+    <div class="form-section">
+      <h2>Set Medicine Reminder</h2>
+      <form id="reminder-form" onsubmit="event.preventDefault(); addReminder();">
+        <div class="form-group">
+          <label for="reminderName">Medicine Name:</label>
+          <input type="text" id="reminderName" readonly />
+        </div>
+        <div class="form-group">
+          <label for="reminderPurpose">Medicine Purpose / Description:</label>
+          <textarea id="reminderPurpose" rows="3" placeholder="Describe the medicine purpose..."></textarea>
+        </div>
+        <div class="form-group">
+          <label for="reminderTime">Schedule (Date & Time):</label>
+          <input type="datetime-local" id="reminderTime" />
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" id="alarmToggleInput" checked /> Enable Alarm</label>
+        </div>
+        <button type="submit" class="btn">Save Reminder</button>
+      </form>
+    </div>
+
+    <div class="list-section">
+      <h2>My Reminders</h2>
+      <input type="search" id="search" placeholder="Search reminders..." oninput="filterReminders()" />
+      <ul class="reminders-list" id="reminderList"></ul>
+    </div>
+  </div>
+</main>
+
+<footer>In-depth Knowledge, Medication Made Simple</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const { createClient } = supabase;
+  const supabaseUrl = "https://ggesdpocbvcclkkeatjt.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnZXNkcG9jYnZjY2xra2VhdGp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgyNjMwOTYsImV4cCI6MjA2MzgzOTA5Nn0.JIVNhLEwkVQAyQE5sCEIYRmkhj21I1a-TvWArG7Mwr8"; 
+  const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+</script>
+<script>
+  let reminders = JSON.parse(localStorage.getItem('reminders')) || [];
+  const reminderList = document.getElementById('reminderList');
+  const searchInput = document.getElementById('search');
+
+  const selectedMedicineRaw = localStorage.getItem('selectedMedicine');
+  if (selectedMedicineRaw) {
+    try {
+      const selectedMedicine = JSON.parse(selectedMedicineRaw);
+      document.getElementById("reminderName").value = selectedMedicine.name || '';
+      document.getElementById("reminderPurpose").value = selectedMedicine.purpose || '';
+    } catch {
+      document.getElementById("reminderName").value = selectedMedicineRaw;
+      document.getElementById("reminderPurpose").value = '';
+    }
+  }
+
+  function renderReminders(list) {
+    reminderList.innerHTML = '';
+    list.forEach(reminder => {
+      const li = document.createElement('li');
+      const reminderText = document.createElement('div');
+      reminderText.className = 'reminder-text';
+      const date = new Date(reminder.time);
+      reminderText.innerHTML = `<strong>${reminder.name}</strong><br><em>${reminder.purpose || 'No description'}</em><br>${date.toLocaleString()}`;
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.checked = reminder.done;
+      checkbox.title = "Mark as Done";
+      checkbox.addEventListener('change', () => toggleDone(reminder.id));
+
+      const alarmToggle = document.createElement('input');
+      alarmToggle.type = 'checkbox';
+      alarmToggle.checked = reminder.alarmOn;
+      alarmToggle.title = "Enable/Disable Alarm";
+      alarmToggle.addEventListener('change', () => toggleAlarm(reminder.id));
+
+      const alarmLabel = document.createElement('label');
+      alarmLabel.style.display = 'flex';
+      alarmLabel.style.alignItems = 'center';
+      alarmLabel.style.gap = '4px';
+      alarmLabel.appendChild(alarmToggle);
+      alarmLabel.appendChild(document.createTextNode('Alarm'));
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'delete-btn';
+      deleteBtn.innerHTML = '🗑️';
+      deleteBtn.onclick = () => deleteReminder(reminder.id);
+
+      li.appendChild(reminderText);
+      li.appendChild(checkbox);
+      li.appendChild(alarmLabel);
+      li.appendChild(deleteBtn);
+      reminderList.appendChild(li);
+    });
+    localStorage.setItem('reminders', JSON.stringify(reminders));
+  }
+
+  async function addReminder() {
+    const name = document.getElementById("reminderName").value.trim();
+    const purpose = document.getElementById("reminderPurpose").value.trim();
+    const timeInput = document.getElementById("reminderTime").value;
+    const alarmOn = document.getElementById("alarmToggleInput").checked;
+
+    if (!name || !timeInput) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    const reminderTime = new Date(timeInput);
+    if (reminderTime < new Date()) {
+      alert("Reminder time must be in the future.");
+      return;
+    }
+
+    const isoTime = reminderTime.toISOString(); // convert to UTC ISO string
+
+    // Save to Supabase
+    const { data, error } = await supabaseClient
+      .from('reminders')
+      .insert([{
+        name: name,
+        purpose: purpose,
+        time: isoTime, // <-- Save as UTC ISO string
+        done: false,
+        alarm_on: alarmOn,
+        alerted: false
+      }])
+      .select();
+
+    if (error) {
+      alert("Failed to save reminder: " + error.message);
+      return;
+    }
+
+    // Optionally, update local reminders for popup logic
+    reminders.push({
+      id: data[0].id,
+      name,
+      purpose,
+      time: isoTime,
+      done: false,
+      alarmOn,
+      alerted: false
+    });
+    localStorage.setItem('reminders', JSON.stringify(reminders));
+
+    document.getElementById("reminderPurpose").value = '';
+    document.getElementById("reminderTime").value = '';
+    document.getElementById("alarmToggleInput").checked = true;
+
+    filterReminders();
+  }
+
+  function toggleDone(id) {
+    reminders = reminders.map(r => r.id === id ? { ...r, done: !r.done } : r);
+    filterReminders();
+  }
+
+  function toggleAlarm(id) {
+    reminders = reminders.map(r => r.id === id ? { ...r, alarmOn: !r.alarmOn } : r);
+    filterReminders();
+  }
+
+  function deleteReminder(id) {
+    reminders = reminders.filter(r => r.id !== id);
+    filterReminders();
+  }
+
+  function filterReminders() {
+    const query = searchInput.value.toLowerCase();
+    const filtered = reminders.filter(r =>
+      r.name.toLowerCase().includes(query) ||
+      (r.purpose && r.purpose.toLowerCase().includes(query))
+    );
+    renderReminders(filtered);
+    return filtered;
+  }
+
+  async function reloadRemindersFromSupabase() {
+  const { data, error } = await supabaseClient
+    .from('reminders')
+    .select('*')
+    .order('time', { ascending: true });
+  if (!error && data) {
+    reminders = data.map(r => ({
+      id: r.id,
+      name: r.name,
+      purpose: r.purpose,
+      time: r.time,
+      done: r.done,
+      alarmOn: r.alarm_on,
+      alerted: r.alerted
+    }));
+    localStorage.setItem('reminders', JSON.stringify(reminders));
+    renderReminders(reminders);
+  }
+}
+
+  renderReminders(reminders);
+
+  document.getElementById('backToDashboardBtn').addEventListener('click', () => {
+          window.location.href = 'dashboard.html';
+        });
+</script> 
+
+<script src="remindersAlarm.js"></script>
+<script>
+(function () {
+  const audio = new Audio('alarm.mp3');
+  audio.loop = true;
+
+  const popupId = 'reminderPopup';
+  let activeAlarmReminder = null;
+
+  // Tab coordination
+  const tabId = `${Date.now()}-${Math.random()}`;
+  localStorage.setItem('activeAlarmTab', tabId);
+  let isLeaderTab = true;
+
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'activeAlarmTab' && e.newValue !== tabId) {
+      isLeaderTab = false;
+    }
+  });
+
+  // Request permission for notifications
+  if (typeof Notification !== 'undefined' && Notification.permission !== 'granted') {
+    Notification.requestPermission();
+  }
+
+  function notifyUser(reminder) {
+    if (Notification.permission === 'granted') {
+      const notification = new Notification(`⏰ Reminder: ${reminder.name}`, {
+        body: reminder.purpose || 'Your reminder is due!',
+        icon: 'alarm-icon.png'
+      });
+
+      // Try to play sound when notification is shown (may not work in all browsers)
+      notification.onshow = () => {
+        try {
+          audio.play();
+        } catch (e) {
+          // Ignore errors
+        }
+      };
+
+      // Optional: Focus tab when notification is clicked
+      notification.onclick = () => {
+        window.focus();
+      };
+    }
+  }
+
+  function formatDateTime(dateStr) {
+    const d = new Date(dateStr);
+    return d.toLocaleString(undefined, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  }
+
+  function createPopup() {
+    if (document.getElementById(popupId)) return;
+
+    const popup = document.createElement('div');
+    popup.id = popupId;
+    popup.style = `
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 9999;
+      display: none;
+      max-width: 320px;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    `;
+
+    popup.innerHTML = `
+      <p id="reminderMessage" style="font-size: 18px; margin-bottom: 10px;">⏰ Reminder!</p>
+      <p id="reminderPopupDescription" style="font-size: 14px; color: #555; margin-bottom: 6px;"></p>
+      <button id="closeReminderPopup" style="
+        background-color: #ff4444;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+      ">Close</button>
+    `;
+
+    document.body.appendChild(popup);
+
+    document.getElementById('closeReminderPopup').onclick = async () => {
+      popup.style.display = 'none';
+      audio.pause();
+      audio.currentTime = 0;
+
+      if (activeAlarmReminder) {
+        // Save to Supabase history table
+        const { error } = await supabaseClient
+          .from('history')
+          .insert([{
+            name: activeAlarmReminder.name, // Medicine Name
+            time: activeAlarmReminder.time  // Schedule (Date & Time)
+          }]);
+        if (error) {
+          alert("Failed to save to history: " + error.message);
+          return;
+        }
+      }
+
+      activeAlarmReminder = null;
+      window.location.href = 'history.html';
+    };
+  }
+
+  async function checkReminders() {
+    const reminders = JSON.parse(localStorage.getItem('reminders')) || [];
+    const now = new Date();
+
+    for (const reminder of reminders) {
+      if (
+        reminder.alarmOn &&
+        !reminder.done &&
+        !reminder.alerted &&
+        new Date(reminder.time) <= now
+      ) {
+        reminder.alerted = true;
+        localStorage.setItem('reminders', JSON.stringify(reminders));
+        activeAlarmReminder = reminder;
+
+        const popup = document.getElementById(popupId);
+        const message = document.getElementById('reminderMessage');
+        const description = document.getElementById('reminderPopupDescription');
+
+        if (message) {
+          message.innerHTML = `⏰ Reminder: <strong>${reminder.name}</strong><br>At: ${formatDateTime(reminder.time)}`;
+        }
+        if (description) {
+          description.textContent = reminder.purpose ? `Description: ${reminder.purpose}` : 'No description';
+        }
+        if (popup) popup.style.display = 'block';
+
+        audio.play().catch(err => console.warn('🎵 Alarm audio failed to play:', err));
+        notifyUser(reminder);
+        break;
+      }
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    createPopup();
+  });
+
+  setInterval(() => {
+    if (document.visibilityState === 'visible' && isLeaderTab) {
+      checkReminders();
+    } else if (isLeaderTab) {
+      // Still check for reminders in background for notification
+      checkReminders();
+    }
+  }, 1000);
+})();
+</script>
+</body>
+</html> 

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KnowMed About</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    body {
+      background-color: #f5f5f5;
+    }
+
+    header.navbar {
+      width: 100%;
+      height: 80px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-container img {
+      height: 35px;
+      width: 35px;
+    }
+
+    .logo-text {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.5rem;
+      color: #3a7073;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: blue;
+    }
+
+    .contact-btn {
+      background-color: #a6f0d3;
+      padding: 0.5rem 0.75rem;
+      border-radius: 10%;
+      text-decoration: none;
+      color: #000;
+    }
+
+    .hero-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px);
+      padding: 0 5%;
+      margin-top: 80px;
+      background-image: url('back.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(120deg, rgba(166, 240, 211, 0.3), rgba(58, 112, 115, 0.3));
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .main-container {
+      display: flex;
+      align-items: center;
+      backdrop-filter: blur(10px);
+      background-color: rgba(255, 255, 255, 0.25);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      width: 20%;
+      min-width: 575px;
+      z-index: 2;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .about-card {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+      text-align: left;
+      z-index: 10;
+    }
+
+    .about-card h2 {
+      color: #3a7073;
+      margin-bottom: 0.5rem;
+      font-size: 50px;
+      text-align: center;
+    }
+
+    .about-card p {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.6;
+    }
+
+    .hero-img {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      max-width: 500px;
+      z-index: 5;
+    }
+
+    .hero-img img {
+      height: 80vh;
+      width: auto;
+      object-fit: contain;
+      animation: floatImg 4s ease-in-out infinite;
+    }
+
+    @keyframes floatImg {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px;
+      background: white;
+      color: #888;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .hero-img {
+        margin-top: 1rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo-container">
+      <img src="logo.png" alt="Logo"> 
+      <div class="logo-text">KnowMed</div>
+    </div>
+    <nav class="nav-links">
+      <a href="dashboard.html" class="active">Home</a>
+      <a href="dashboardabout.html" class="contact-btn"> About →</a>
+      <a href="dashboardContact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero-section">
+    <div class="main-container">
+      <div class="about-card">
+        <h2>ABOUT US</h2>
+        <p>
+                  KnowMed is your personal medication manager. It’s built to help users monitor their medicine intake, receive reminders,
+          and stay on top of their health routines. Whether you're tracking a prescription or managing a family member’s dosage,
+          KnowMed ensures your wellness is just a click away.
+        </p>
+      </div>
+    </div>
+
+    <div class="hero-img">
+      <img src="doc.png" alt="Doctor Image">
+    </div>
+  </section>
+
+  <footer>
+    In-depth Knowledge, Medication Made Simple
+  </footer>
+<script src="remindersAlarm.js"></script>
+</body>
+</html>

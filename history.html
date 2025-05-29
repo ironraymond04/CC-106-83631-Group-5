@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>History</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      background: url("back.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    header.navbar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background-color: #0082ca;
+      padding: 2rem 2rem;
+      position: relative;
+      z-index: 1000;
+      gap: 1rem;
+    }
+
+    .back-btn {
+      color: white;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+    }
+    .back-btn:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .center-title {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+      pointer-events: none;
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 900px;
+      padding: 3rem 2rem;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(200, 200, 200, 0.3);
+      transition: box-shadow 0.3s ease;
+      animation: fadeIn 0.7s ease-out;
+    }
+
+    .main-container:hover {
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .main-container h2 {
+      font-size: 2rem;
+      color: #3a7073;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .history-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid #d0d0d0;
+      background: white;
+    }
+
+    .history-table {
+      width: 100%;
+      min-width: 700px;
+      border-collapse: collapse;
+      font-size: 1rem;
+      color: #333;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .history-table thead {
+      background: linear-gradient(to right, #3a7073, #67cccf);
+    }
+
+    .history-table th,
+    .history-table td {
+      padding: 1rem 1.25rem;
+      text-align: left;
+    }
+
+    .history-table th {
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .history-table tbody tr:nth-child(even) {
+      background-color: #f8fafa;
+    }
+
+    .history-table tbody tr:hover {
+      background-color: #e4f7f6;
+    }
+
+    .delete-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 0.3rem 0.6rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background-color 0.2s ease;
+    }
+    .delete-btn:hover {
+      background-color: #c0392b;
+    }
+
+    .dashboard-btn-container {
+      width: 100%;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .dashboard-btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      background-color: #0082ca;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 130, 202, 0.4);
+      transition: background-color 0.3s ease;
+    }
+
+    .dashboard-btn:hover {
+      background-color: #006bb3;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      color: #888;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 1rem;
+      box-shadow: 0 -1px 5px rgba(0,0,0,0.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      header.navbar {
+        padding: 1rem 1.5rem;
+      }
+      .center-title {
+        font-size: 1.2rem;
+      }
+      .main-container {
+        padding: 1.5rem;
+      }
+      .history-table {
+        min-width: 100%;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="navbar">
+  <div class="center-title">History</div>
+  <nav class="nav-links" id="navLinks"></nav>
+</header>
+
+<main>
+  <div class="main-container">
+    <div class="dashboard-btn-container" style="text-align: left; margin-bottom: -1rem; margin-top: -1px;">
+      <button id="backToDashboardBtn" class="dashboard-btn">Back</button>
+    </div>
+    <h2>📜 Medicine History</h2>
+    <table class="history-table">
+      <thead>
+        <tr>
+          <th>Reminder Name</th>
+          <th>Date Taken and Time</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="historyTableBody">
+        <!-- Filled dynamically -->
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<footer>
+  In-depth Knowledge, Medication Made Simple
+</footer>
+
+<script src="remindersAlarm.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+  const { createClient } = supabase;
+  const supabaseUrl = "https://ggesdpocbvcclkkeatjt.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnZXNkcG9jYnZjY2xra2VhdGp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgyNjMwOTYsImV4cCI6MjA2MzgzOTA5Nn0.JIVNhLEwkVQAyQE5sCEIYRmkhj21I1a-TvWArG7Mwr8";
+  const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const tableBody = document.getElementById('historyTableBody');
+    let history = JSON.parse(localStorage.getItem('history')) || [];
+
+    function formatDateTime(dateStr) {
+      const d = new Date(dateStr);
+      return d.toLocaleString(undefined, {
+        year: 'numeric',
+        month: 'short',
+        
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    }
+
+    function renderHistory() {
+      if (history.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="4" style="text-align:center;">No past reminders yet.</td></tr>';
+        return;
+      }
+
+      tableBody.innerHTML = history.map((item, index) => {
+        return `
+          <tr>
+            <td>${item.name}</td>
+            <td colspan="2">${formatDateTime(item.time)}</td>
+            <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    tableBody.addEventListener('click', (e) => {
+      if (e.target.classList.contains('delete-btn')) {
+        const idx = e.target.getAttribute('data-index');
+        if (confirm('Delete this history entry?')) {
+          history.splice(idx, 1);
+          localStorage.setItem('history', JSON.stringify(history));
+          renderHistory();
+        }
+      }
+    });
+
+    renderHistory();
+  });
+
+  // Handle back button
+  document.getElementById('backToDashboardBtn').addEventListener('click', () => {
+    window.location.href = 'dashboard.html';
+  });
+</script>
+
+</body>
+</html> 

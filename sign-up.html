@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>KnowMed - Rigister</title>
+  <link rel="icon" type="image/x-icon" href="knowmed.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <img src="logo.png" alt="KnowMed Logo" />
+      <span>KnowMed</span>
+    </div>
+    <nav class="nav-links">
+      <a href="frontpage.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" class="contact-btn">Contact →</a>
+    </nav>
+  </header>
+
+ <section class="hero-section">
+    <div class="form-wrapper">
+      <form class="form-container" id="signUpForm">
+        <label for="name">Name:</label>
+        <input type="text" placeholder="Name" id="name" required />
+
+        <label for="age">Age:</label>
+        <input type="number" placeholder="Age" id="age" min="1" required />
+
+        <label for="gender">Gender:</label>
+        <select id="gender" required>
+          <option value="" disabled selected>Select gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="email">Email:</label>
+        <input type="email" placeholder="Email" id="email" required />
+
+        <label for="password">Password:</label>
+        <input type="password" placeholder="Password" id="password" required />
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" placeholder="Confirm Password" id="confirm-password" required />
+
+        <button type="submit" class="login-btn">Sign Up</button>
+      </form>
+    </div>
+  </section>
+<script src="remindersAlarm.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const { createClient } = supabase;
+  const supabaseUrl = "https://ggesdpocbvcclkkeatjt.supabase.co";
+  const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdnZXNkcG9jYnZjY2xra2VhdGp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDgyNjMwOTYsImV4cCI6MjA2MzgzOTA5Nn0.JIVNhLEwkVQAyQE5sCEIYRmkhj21I1a-TvWArG7Mwr8"; 
+  const supabaseClient = createClient(supabaseUrl, supabaseKey);
+
+  const form = document.getElementById("signUpForm");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const age = parseInt(document.getElementById("age").value);
+    const gender = document.getElementById("gender").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    if (!name || !age || !gender || !email || !password || !confirmPassword) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    const { data, error } = await supabaseClient
+      .from("users")
+      .insert([
+        {
+          name,
+          age,
+          gender,
+          email,
+          password // Note: Still in plain text, best to hash in real app
+        }
+      ]);
+
+    if (error) {
+      console.error("Registration error:", error);
+      alert("Registration failed: " + (error.message || JSON.stringify(error)));
+      return;
+    }
+
+    alert("Registration successful!");
+    window.location.href = "log-in.html";
+  });
+</script>
+
+</body>
+</html>
